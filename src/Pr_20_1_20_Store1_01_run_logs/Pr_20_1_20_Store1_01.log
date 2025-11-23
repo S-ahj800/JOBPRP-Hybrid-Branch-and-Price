@@ -1,0 +1,604 @@
+2025-11-23 14:50:33,199 - INFO     - [root:main:73] - Detailed DEBUG log will be saved to: Pr_20_1_20_Store1_01_run_logs/Pr_20_1_20_Store1_01.log
+2025-11-23 14:50:33,200 - INFO     - [root:main:80] - Loading JOBPRP instance from: /home/sina_ahj/notebooks/Thesis/debug/src/data/BahceciOencan/Pr_20_1_20_Store1_01.txt
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 1 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 2 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 3 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 4 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 5 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 6 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 7 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:_parse_order_section:236] - Parsed 8 orders from instance file.
+2025-11-23 14:50:33,201 - DEBUG    - [root:parse:255] - [JOBPRPInstance] Parsed orders: [0, 1, 2, 3, 4, 5, 6, 7]
+2025-11-23 14:50:33,201 - INFO     - [root:main:83] - Successfully loaded instance: Pr_20_1_20_Store1_01.txt
+2025-11-23 14:50:33,201 - INFO     - [root:__init__:39] - Building state-space graph for picker routing...
+2025-11-23 14:50:33,203 - INFO     - [root:__init__:41] - State-space graph built successfully.
+2025-11-23 14:50:33,203 - INFO     - [root:solve:51] - [B&P] Starting Branch and Price Algorithm. Time Limit: 3600.0s
+2025-11-23 14:50:33,203 - INFO     - [root:_create_root_node:113] - Creating root node...
+2025-11-23 14:50:33,203 - DEBUG    - [root:find:32] - Generating initial columns (one per order).
+2025-11-23 14:50:33,203 - DEBUG    - [root:find:35] - Finding initial tour for Order 0.
+2025-11-23 14:50:33,204 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 0 with cost 31.60.
+2025-11-23 14:50:33,204 - DEBUG    - [root:find:35] - Finding initial tour for Order 1.
+2025-11-23 14:50:33,204 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 1 with cost 58.80.
+2025-11-23 14:50:33,205 - DEBUG    - [root:find:35] - Finding initial tour for Order 2.
+2025-11-23 14:50:33,205 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 2 with cost 60.40.
+2025-11-23 14:50:33,205 - DEBUG    - [root:find:35] - Finding initial tour for Order 3.
+2025-11-23 14:50:33,205 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 3 with cost 67.20.
+2025-11-23 14:50:33,206 - DEBUG    - [root:find:35] - Finding initial tour for Order 4.
+2025-11-23 14:50:33,206 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 4 with cost 59.20.
+2025-11-23 14:50:33,206 - DEBUG    - [root:find:35] - Finding initial tour for Order 5.
+2025-11-23 14:50:33,206 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 5 with cost 41.20.
+2025-11-23 14:50:33,206 - DEBUG    - [root:find:35] - Finding initial tour for Order 6.
+2025-11-23 14:50:33,207 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 6 with cost 65.20.
+2025-11-23 14:50:33,207 - DEBUG    - [root:find:35] - Finding initial tour for Order 7.
+2025-11-23 14:50:33,207 - DEBUG    - [root:find:39] -   -> Found initial tour for Order 7 with cost 32.00.
+2025-11-23 14:50:33,207 - DEBUG    - [root:find:44] - Generated 8 initial singleton columns.
+2025-11-23 14:50:33,207 - INFO     - [root:_create_root_node:117] - Generated 8 initial columns (singleton batches).
+2025-11-23 14:50:33,207 - DEBUG    - [root:__init__:51] - [BranchNode 0] Initialized with orders: [0, 1, 2, 3, 4, 5, 6, 7]
+2025-11-23 14:50:33,208 - INFO     - [gurobipy:__init__:55] - Set parameter WLSAccessID
+2025-11-23 14:50:33,208 - INFO     - [gurobipy:__init__:55] - Set parameter WLSSecret
+2025-11-23 14:50:33,208 - INFO     - [gurobipy:__init__:55] - Set parameter LicenseID to value 2737553
+2025-11-23 14:50:33,209 - INFO     - [gurobipy:__init__:55] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,210 - INFO     - [gurobipy:_init_model:137] - Set parameter LogToConsole to value 0
+2025-11-23 14:50:33,210 - INFO     - [gurobipy:_init_model:138] - Set parameter DualReductions to value 0
+2025-11-23 14:50:33,210 - DEBUG    - [root:_build_constraints:149] - [Node 0] Building 8 order partitioning constraints.
+2025-11-23 14:50:33,210 - DEBUG    - [root:_add_feasible_initial_columns:160] - [Node 0] Received 8 initial columns.
+2025-11-23 14:50:33,211 - INFO     - [root:_add_feasible_initial_columns:166] - [Node 0] RMP initialized with 8 columns.
+2025-11-23 14:50:33,211 - INFO     - [root:_create_root_node:126] - Root node (ID: 0) created successfully.
+2025-11-23 14:50:33,211 - INFO     - [root:solve:68] - Processing Node 0 (LB: inf, GUB: inf, Time: 0s)
+2025-11-23 14:50:33,211 - INFO     - [root:solve:222] - Starting column generation for Node 0.
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,211 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 8 columns and 8 nonzeros
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Model fingerprint: 0x16428519
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 7e+01]
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Presolve time: 0.00s
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Presolve: All rows and columns removed
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] -        0    4.1560000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Solved in 0 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,212 - INFO     - [gurobipy:solve:236] - Optimal objective  4.156000000e+02
+2025-11-23 14:50:33,212 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 1] RMP solved (Obj: 415.60).
+2025-11-23 14:50:33,215 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,215 - INFO     - [root:solve:261] - [Node 0, CG Iter 1] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,215 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 18 columns and 78 nonzeros
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,216 - INFO     - [gurobipy:solve:236] -        0   -2.5160000e+33   7.000000e+31   2.516000e+03      0s
+2025-11-23 14:50:33,217 - INFO     - [gurobipy:solve:236] -        1    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,217 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,217 - INFO     - [gurobipy:solve:236] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,217 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,217 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 2] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,220 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,220 - INFO     - [root:solve:261] - [Node 0, CG Iter 2] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,221 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 28 columns and 138 nonzeros
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -        0   -2.2560000e+33   6.000000e+31   2.256000e+03      0s
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] -        1    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,222 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,222 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 3] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,224 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,225 - INFO     - [root:solve:261] - [Node 0, CG Iter 3] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,225 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,225 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,226 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 38 columns and 198 nonzeros
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -        0   -1.9240000e+33   6.000000e+31   1.924000e+03      0s
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] -        2    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,227 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,228 - INFO     - [gurobipy:solve:236] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,228 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,228 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 4] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,230 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,231 - INFO     - [root:solve:261] - [Node 0, CG Iter 4] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,231 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 48 columns and 248 nonzeros
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -        0   -1.6480000e+33   5.000000e+31   1.648000e+03      0s
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] -        1    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,232 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,232 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 5] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,234 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,235 - INFO     - [root:solve:261] - [Node 0, CG Iter 5] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,235 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 58 columns and 298 nonzeros
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,236 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] -        0   -1.1440000e+33   5.000000e+31   1.144000e+03      0s
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] -        1    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,237 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,237 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 6] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,240 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,240 - INFO     - [root:solve:261] - [Node 0, CG Iter 6] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,241 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 68 columns and 338 nonzeros
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,242 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] -        0   -5.5200000e+32   4.000000e+31   5.520000e+02      0s
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] -        1    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,243 - INFO     - [gurobipy:solve:236] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,244 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,244 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 7] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,246 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,246 - INFO     - [root:solve:261] - [Node 0, CG Iter 7] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,247 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 78 columns and 358 nonzeros
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -        0   -5.5200000e+32   2.000000e+31   5.520000e+02      0s
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] -       11    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Solved in 11 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,248 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,248 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 8] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,251 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,251 - INFO     - [root:solve:261] - [Node 0, CG Iter 8] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,251 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 88 columns and 398 nonzeros
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -        0   -3.3200000e+32   3.000000e+31   3.320000e+02      0s
+2025-11-23 14:50:33,252 - INFO     - [gurobipy:solve:236] -       11    1.6400000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,253 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,253 - INFO     - [gurobipy:solve:236] - Solved in 11 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,253 - INFO     - [gurobipy:solve:236] - Optimal objective  1.640000000e+02
+2025-11-23 14:50:33,253 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 9] RMP solved (Obj: 164.00).
+2025-11-23 14:50:33,266 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,267 - INFO     - [root:solve:261] - [Node 0, CG Iter 9] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,267 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 98 columns and 468 nonzeros
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -        0   -6.6000000e+32   3.000000e+31   6.600000e+02      0s
+2025-11-23 14:50:33,268 - INFO     - [gurobipy:solve:236] -        4    1.5880000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,269 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,269 - INFO     - [gurobipy:solve:236] - Solved in 4 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,269 - INFO     - [gurobipy:solve:236] - Optimal objective  1.588000000e+02
+2025-11-23 14:50:33,269 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 10] RMP solved (Obj: 158.80).
+2025-11-23 14:50:33,271 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,272 - INFO     - [root:solve:261] - [Node 0, CG Iter 10] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,272 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 108 columns and 518 nonzeros
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -        0   -5.3200000e+32   6.000000e+31   5.320000e+02      0s
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] -        2    1.5880000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,273 - INFO     - [gurobipy:solve:236] - Optimal objective  1.588000000e+02
+2025-11-23 14:50:33,273 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 11] RMP solved (Obj: 158.80).
+2025-11-23 14:50:33,275 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,276 - INFO     - [root:solve:261] - [Node 0, CG Iter 11] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,276 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,276 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,276 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,277 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 118 columns and 578 nonzeros
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -        0   -2.6600000e+32   4.000000e+31   2.660000e+02      0s
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] -        3    1.5880000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - Solved in 3 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,278 - INFO     - [gurobipy:solve:236] - Optimal objective  1.588000000e+02
+2025-11-23 14:50:33,278 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 12] RMP solved (Obj: 158.80).
+2025-11-23 14:50:33,292 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,293 - INFO     - [root:solve:261] - [Node 0, CG Iter 12] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,293 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 128 columns and 648 nonzeros
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -        0   -3.4800000e+32   2.000000e+31   3.480000e+02      0s
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] -        5    1.5880000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Solved in 5 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,294 - INFO     - [gurobipy:solve:236] - Optimal objective  1.588000000e+02
+2025-11-23 14:50:33,294 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 13] RMP solved (Obj: 158.80).
+2025-11-23 14:50:33,308 - INFO     - [root:_solve_profitable_sprp_subproblem:421] - [CG] Heuristic found 10 profitable columns.
+2025-11-23 14:50:33,308 - INFO     - [root:solve:261] - [Node 0, CG Iter 13] Added 10 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,308 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,308 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,308 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,308 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 138 columns and 728 nonzeros
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,309 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] -        0   -3.1600000e+32   2.000000e+31   3.160000e+02      0s
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] -        9    1.2720000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] - Solved in 9 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,310 - INFO     - [gurobipy:solve:236] - Optimal objective  1.272000000e+02
+2025-11-23 14:50:33,310 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 14] RMP solved (Obj: 127.20).
+2025-11-23 14:50:33,354 - INFO     - [root:_solve_profitable_sprp_subproblem:425] - [CG] Heuristic failed. Solving exact subproblem for node 0 at iteration 14
+2025-11-23 14:50:33,355 - INFO     - [gurobipy:build:61] - Set parameter LogToConsole to value 0
+2025-11-23 14:50:33,355 - INFO     - [gurobipy:build:62] - Set parameter MIPGap to value 0
+2025-11-23 14:50:33,368 - DEBUG    - [root:solve:37] - [Subproblem] Solving subproblem...
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:41] - Set parameter PoolSearchMode to value 2
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:42] - Set parameter PoolSolutions to value 50
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:43] - Set parameter PoolGap to value 0
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:47] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:47] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,368 - INFO     - [gurobipy:solve:47] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - Non-default parameters:
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - MIPGap  0
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - LogToConsole  0
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - PoolSolutions  50
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - PoolSearchMode  2
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - PoolGap  0
+2025-11-23 14:50:33,369 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] - Optimize a model with 174 rows, 572 columns and 1812 nonzeros
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] - Model fingerprint: 0xb3481724
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] - Coefficient statistics:
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] -   Matrix range     [1e+00, 3e+00]
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] -   Objective range  [2e+00, 7e+01]
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] -   Bounds range     [1e+00, 1e+00]
+2025-11-23 14:50:33,370 - INFO     - [gurobipy:solve:47] -   RHS range        [1e+00, 2e+01]
+2025-11-23 14:50:33,371 - INFO     - [gurobipy:solve:47] - Found heuristic solution: objective 217.6000000
+2025-11-23 14:50:33,376 - INFO     - [gurobipy:solve:47] - Presolve removed 51 rows and 129 columns
+2025-11-23 14:50:33,376 - INFO     - [gurobipy:solve:47] - Presolve time: 0.01s
+2025-11-23 14:50:33,377 - INFO     - [gurobipy:solve:47] - Presolved: 123 rows, 443 columns, 1386 nonzeros
+2025-11-23 14:50:33,377 - INFO     - [gurobipy:solve:47] - Variable types: 0 continuous, 443 integer (443 binary)
+2025-11-23 14:50:33,378 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,378 - INFO     - [gurobipy:solve:47] - Root relaxation: objective -2.500000e+00, 148 iterations, 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,379 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,380 - INFO     - [gurobipy:solve:47] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-11-23 14:50:33,380 - INFO     - [gurobipy:solve:47] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-11-23 14:50:33,380 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,380 - INFO     - [gurobipy:solve:47] -      0     0   -2.50000    0   25  217.60000   -2.50000   101%     -    0s
+2025-11-23 14:50:33,381 - INFO     - [gurobipy:solve:47] - H    0     0                      -1.0000000   -2.50000   150%     -    0s
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] - H    0     0                      -2.0000000   -2.50000  25.0%     -    0s
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] -      0     0          -    0        -2.00000   -2.00000  0.00%     -    0s
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] - Optimal solution found at node 0 - now completing solution pool...
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] -              |                    |   Worst                   |
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,382 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -   -2.00000      -     -    0s
+2025-11-23 14:50:33,386 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -   -2.00000      -     -    0s
+2025-11-23 14:50:33,386 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -   -2.00000      -     -    0s
+2025-11-23 14:50:33,387 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -   -2.00000      -     -    0s
+2025-11-23 14:50:33,387 - INFO     - [gurobipy:solve:47] -      0     2          -    0               -   -2.00000      -     -    0s
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - Explored 47 nodes (160 simplex iterations) in 0.02 seconds (0.01 work units)
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - Thread count was 12 (of 12 available processors)
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - Solution count 24: -2 -2 -2 ... -2
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - No other solutions better than -2
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - Optimal solution found (tolerance 0.00e+00)
+2025-11-23 14:50:33,388 - INFO     - [gurobipy:solve:47] - Best objective -2.000000000000e+00, best bound -2.000000000000e+00, gap 0.0000%
+2025-11-23 14:50:33,389 - DEBUG    - [root:solve:51] - Subproblem solved. Reduced Cost: -2.0000. Solutions in pool: 24
+2025-11-23 14:50:33,389 - DEBUG    - [root:get_profitable_columns:71] - [Subproblem] Extracting profitable columns...
+2025-11-23 14:50:33,389 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 24 solutions in the solution pool.
+2025-11-23 14:50:33,389 - DEBUG    - [root:get_profitable_columns:103] - [Subproblem] Found 1 profitable columns.
+2025-11-23 14:50:33,390 - INFO     - [root:solve:261] - [Node 0, CG Iter 14] Added 1 new columns. RMP Obj: inf.
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - Non-default parameters:
+2025-11-23 14:50:33,390 - INFO     - [gurobipy:solve:236] - DualReductions  0
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - LogToConsole  0
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - Optimize a model with 8 rows, 139 columns and 731 nonzeros
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - Coefficient statistics:
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] -   Matrix range     [1e+00, 1e+00]
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] -   Objective range  [3e+01, 1e+02]
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] -   Bounds range     [0e+00, 0e+00]
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] -   RHS range        [1e+00, 1e+00]
+2025-11-23 14:50:33,391 - INFO     - [gurobipy:solve:236] - LP warm-start: use basis
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] -        0   -2.0000000e+30   4.000000e+30   2.000000e+00      0s
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] -        2    1.2720000e+02   0.000000e+00   0.000000e+00      0s
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] - 
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,392 - INFO     - [gurobipy:solve:236] - Optimal objective  1.272000000e+02
+2025-11-23 14:50:33,392 - DEBUG    - [root:solve:240] - [Node 0, CG Iter 15] RMP solved (Obj: 127.20).
+2025-11-23 14:50:33,436 - INFO     - [root:_solve_profitable_sprp_subproblem:425] - [CG] Heuristic failed. Solving exact subproblem for node 0 at iteration 15
+2025-11-23 14:50:33,436 - INFO     - [gurobipy:build:61] - Set parameter LogToConsole to value 0
+2025-11-23 14:50:33,436 - INFO     - [gurobipy:build:62] - Set parameter MIPGap to value 0
+2025-11-23 14:50:33,447 - DEBUG    - [root:solve:37] - [Subproblem] Solving subproblem...
+2025-11-23 14:50:33,447 - INFO     - [gurobipy:solve:41] - Set parameter PoolSearchMode to value 2
+2025-11-23 14:50:33,447 - INFO     - [gurobipy:solve:42] - Set parameter PoolSolutions to value 50
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:43] - Set parameter PoolGap to value 0
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - Non-default parameters:
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - MIPGap  0
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - LogToConsole  0
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - PoolSolutions  50
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - PoolSearchMode  2
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - PoolGap  0
+2025-11-23 14:50:33,448 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Academic license 2737553 - for non-commercial use only - registered to t.___@lancaster.ac.uk
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Optimize a model with 174 rows, 572 columns and 1812 nonzeros
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Model fingerprint: 0x7b5c1fef
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Coefficient statistics:
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] -   Matrix range     [1e+00, 3e+00]
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] -   Objective range  [2e+00, 7e+01]
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] -   Bounds range     [1e+00, 1e+00]
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] -   RHS range        [1e+00, 2e+01]
+2025-11-23 14:50:33,449 - INFO     - [gurobipy:solve:47] - Found heuristic solution: objective 217.6000000
+2025-11-23 14:50:33,452 - INFO     - [gurobipy:solve:47] - Presolve removed 51 rows and 129 columns
+2025-11-23 14:50:33,452 - INFO     - [gurobipy:solve:47] - Presolve time: 0.00s
+2025-11-23 14:50:33,452 - INFO     - [gurobipy:solve:47] - Presolved: 123 rows, 443 columns, 1386 nonzeros
+2025-11-23 14:50:33,453 - INFO     - [gurobipy:solve:47] - Variable types: 0 continuous, 443 integer (443 binary)
+2025-11-23 14:50:33,454 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,454 - INFO     - [gurobipy:solve:47] - Root relaxation: objective -1.000000e+00, 152 iterations, 0.00 seconds (0.00 work units)
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] -      0     0   -1.00000    0   33  217.60000   -1.00000   100%     -    0s
+2025-11-23 14:50:33,456 - INFO     - [gurobipy:solve:47] - H    0     0                     137.2000000   -1.00000   101%     -    0s
+2025-11-23 14:50:33,457 - INFO     - [gurobipy:solve:47] - H    0     0                      50.0000000   -1.00000   102%     -    0s
+2025-11-23 14:50:33,457 - INFO     - [gurobipy:solve:47] - H    0     0                      34.0000000   -1.00000   103%     -    0s
+2025-11-23 14:50:33,457 - INFO     - [gurobipy:solve:47] - H    0     0                      18.0000000   -1.00000   106%     -    0s
+2025-11-23 14:50:33,457 - INFO     - [gurobipy:solve:47] - H    0     0                      10.0000000   -1.00000   110%     -    0s
+2025-11-23 14:50:33,463 - INFO     - [gurobipy:solve:47] - H    0     0                       4.0000000   -1.00000   125%     -    0s
+2025-11-23 14:50:33,463 - INFO     - [gurobipy:solve:47] - H    0     0                       0.0000000   -1.00000      -     -    0s
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] -      0     0          -    0         0.00000    0.00000  0.00%     -    0s
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] - Optimal solution found at node 0 - now completing solution pool...
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] -              |                    |   Worst                   |
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,464 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -    0.00000      -     -    0s
+2025-11-23 14:50:33,468 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -    0.00000      -     -    0s
+2025-11-23 14:50:33,468 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -    0.00000      -     -    0s
+2025-11-23 14:50:33,468 - INFO     - [gurobipy:solve:47] -      0     0          -    0               -    0.00000      -     -    0s
+2025-11-23 14:50:33,468 - INFO     - [gurobipy:solve:47] -      0     2          -    0               -    0.00000      -     -    0s
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - Explored 367 nodes (231 simplex iterations) in 0.02 seconds (0.01 work units)
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - Thread count was 12 (of 12 available processors)
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - Solution count 50: 0 0 7.10543e-15 ... 1.42109e-14
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - No other solutions better than 1.42109e-14
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - 
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - Optimal solution found (tolerance 0.00e+00)
+2025-11-23 14:50:33,470 - INFO     - [gurobipy:solve:47] - Best objective 1.421085471520e-14, best bound 0.000000000000e+00, gap 0.0000%
+2025-11-23 14:50:33,471 - DEBUG    - [root:solve:51] - Subproblem solved. Reduced Cost: 0.0000. Solutions in pool: 50
+2025-11-23 14:50:33,471 - DEBUG    - [root:get_profitable_columns:71] - [Subproblem] Extracting profitable columns...
+2025-11-23 14:50:33,471 - DEBUG    - [root:get_profitable_columns:74] - [Subproblem] No profitable columns found (objective is non-negative or subproblem is infeasible).
+2025-11-23 14:50:33,471 - INFO     - [root:solve:255] - [CG] Pricing problem found no profitable columns. CG converged on node 0.
+2025-11-23 14:50:33,471 - INFO     - [root:solve:263] - Column generation finished for Node 0. Final RMP Objective: 127.20
+2025-11-23 14:50:33,471 - INFO     - [root:solve:264] -   -> Heuristic Pricing used in 130 iterations.
+2025-11-23 14:50:33,472 - INFO     - [root:solve:84] - [B&P] Found integer solution at Node 0.
+2025-11-23 14:50:33,472 - INFO     - [root:solve:88] - [B&P] New Global Upper Bound: 127.20
+2025-11-23 14:50:33,472 - INFO     - [root:solve:101] - ============================================================
+2025-11-23 14:50:33,472 - INFO     - [root:solve:102] - Branch and Price finished in 0.27 seconds.
+2025-11-23 14:50:33,472 - INFO     - [root:solve:105] - Best integer solution found:
+2025-11-23 14:50:33,472 - INFO     - [root:report_integer_solution:486] - ** Integral solution found at node 0! **
+2025-11-23 14:50:33,472 - INFO     - [root:report_integer_solution:487] - Total Tour Cost: 127.20
+2025-11-23 14:50:33,472 - INFO     - [root:report_integer_solution:494] - Final Batches:
+2025-11-23 14:50:33,472 - INFO     - [root:report_integer_solution:496] -   Batch 1: Orders [0, 1, 2, 3, 4, 5, 6, 7] (Cost: 127.20)
+2025-11-23 14:50:33,472 - INFO     - [root:report_integer_solution:497] - 
+2025-11-23 14:50:33,472 - INFO     - [root:main:91] - Solver finished. Final objective value: 127.19999999999999
