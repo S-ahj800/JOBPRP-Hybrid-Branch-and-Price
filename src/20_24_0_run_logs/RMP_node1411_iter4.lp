@@ -1,0 +1,48 @@
+\ Model JOBPRP_RMP_1411
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+\ Signature: 0xb5f61bae0c61af92
+Minimize
+  91.2 batch_5 + 89.2 batch_6 + 77.2 batch_9 + 78.4 batch_10 + 70.4 batch_13
+   + 65.2 batch_14 + 61.2 batch_19 + 123.2 batch_1_17_18
+   + 115.2 batch_2_7_11 + 115.6 batch_3_12_15 + 119.2 batch_5_6_9_19
+   + 125.2 batch_5_6_10_19 + 121.2 batch_6_9_10_14
+   + 127.2 batch_0_4_8_13_16 + 119.2 batch_5_10_13_14
+   + 125.2 batch_5_9_10_13 + 123.2 batch_9_10_13_14_19
+   + 117.2 batch_5_9_13_14_19 + 123.2 batch_6_9_10_19
+   + 123.1999920047923 batch_1_17_18 + 120 batch_0_4_8_16_19
+   + 121.2 batch_5_6_14 + 129.2 batch_5_9_10_14
+Subject To
+ order_0: batch_0_4_8_13_16 + batch_0_4_8_16_19 = 1
+ order_1: batch_1_17_18 + batch_1_17_18 = 1
+ order_2: batch_2_7_11 = 1
+ order_3: batch_3_12_15 = 1
+ order_4: batch_0_4_8_13_16 + batch_0_4_8_16_19 = 1
+ order_5: batch_5 + batch_5_6_9_19 + batch_5_6_10_19 + batch_5_10_13_14
+   + batch_5_9_10_13 + batch_5_9_13_14_19 + batch_5_6_14 + batch_5_9_10_14
+   = 1
+ order_6: batch_6 + batch_5_6_9_19 + batch_5_6_10_19 + batch_6_9_10_14
+   + batch_6_9_10_19 + batch_5_6_14 = 1
+ order_7: batch_2_7_11 = 1
+ order_8: batch_0_4_8_13_16 + batch_0_4_8_16_19 = 1
+ order_9: batch_9 + batch_5_6_9_19 + batch_6_9_10_14 + batch_5_9_10_13
+   + batch_9_10_13_14_19 + batch_5_9_13_14_19 + batch_6_9_10_19
+   + batch_5_9_10_14 = 1
+ order_10: batch_10 + batch_5_6_10_19 + batch_6_9_10_14 + batch_5_10_13_14
+   + batch_5_9_10_13 + batch_9_10_13_14_19 + batch_6_9_10_19
+   + batch_5_9_10_14 = 1
+ order_11: batch_2_7_11 = 1
+ order_12: batch_3_12_15 = 1
+ order_13: batch_13 + batch_0_4_8_13_16 + batch_5_10_13_14
+   + batch_5_9_10_13 + batch_9_10_13_14_19 + batch_5_9_13_14_19 = 1
+ order_14: batch_14 + batch_6_9_10_14 + batch_5_10_13_14
+   + batch_9_10_13_14_19 + batch_5_9_13_14_19 + batch_5_6_14
+   + batch_5_9_10_14 = 1
+ order_15: batch_3_12_15 = 1
+ order_16: batch_0_4_8_13_16 + batch_0_4_8_16_19 = 1
+ order_17: batch_1_17_18 + batch_1_17_18 = 1
+ order_18: batch_1_17_18 + batch_1_17_18 = 1
+ order_19: batch_19 + batch_5_6_9_19 + batch_5_6_10_19
+   + batch_9_10_13_14_19 + batch_5_9_13_14_19 + batch_6_9_10_19
+   + batch_0_4_8_16_19 = 1
+Bounds
+End

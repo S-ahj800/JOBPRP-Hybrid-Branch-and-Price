@@ -1,0 +1,1241 @@
+2025-10-04 19:59:35,722 - INFO     - [root:main:73] - Detailed DEBUG log will be saved to: Pr_20_1_20_Store1_02_run_logs/Pr_20_1_20_Store1_02.log
+2025-10-04 19:59:35,722 - INFO     - [root:main:80] - Loading JOBPRP instance from: /home/sina_ahj/notebooks/Thesis/debug/src/data/BahceciOencan/Pr_20_1_20_Store1_02.txt
+2025-10-04 19:59:35,723 - DEBUG    - [root:_parse_order_section:221] - Parsed 1 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 2 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 3 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 4 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 5 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 6 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 7 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:_parse_order_section:221] - Parsed 8 orders from instance file.
+2025-10-04 19:59:35,724 - DEBUG    - [root:parse:242] - [JOBPRPInstance] Parsed orders: [0, 1, 2, 3, 4, 5, 6, 7]
+2025-10-04 19:59:35,724 - INFO     - [root:main:83] - Successfully loaded instance: Pr_20_1_20_Store1_02.txt
+2025-10-04 19:59:35,724 - INFO     - [root:__init__:31] - Building state-space graph for picker routing...
+2025-10-04 19:59:35,726 - INFO     - [root:__init__:33] - State-space graph built successfully.
+2025-10-04 19:59:35,726 - DEBUG    - [root:solve:42] - [B&P] Starting Branch and Price Algorithm.
+2025-10-04 19:59:35,726 - INFO     - [root:_create_root_node:96] - Creating root node...
+2025-10-04 19:59:35,726 - DEBUG    - [root:find:32] - [InitialSolutionFinder] Starting to generate initial columns.
+2025-10-04 19:59:35,726 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 0
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 41.60.
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 1
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 65.20.
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 2
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 41.20.
+2025-10-04 19:59:35,727 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 3
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 60.40.
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 4
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 50.80.
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 5
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 62.40.
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 6
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 60.40.
+2025-10-04 19:59:35,728 - DEBUG    - [root:find:35] - [InitialSolutionFinder]  - Processing Order ID: 7
+2025-10-04 19:59:35,729 - DEBUG    - [root:find:39] - [InitialSolutionFinder]    -> Found tour with cost 67.20.
+2025-10-04 19:59:35,729 - DEBUG    - [root:find:44] - [InitialSolutionFinder] Finished. Generated 8 columns.
+2025-10-04 19:59:35,729 - INFO     - [root:_create_root_node:100] - Generated 8 initial columns (singleton batches).
+2025-10-04 19:59:35,729 - DEBUG    - [root:__init__:35] - [BranchNode 0] Initialized with orders: [0, 1, 2, 3, 4, 5, 6, 7]
+2025-10-04 19:59:35,729 - INFO     - [gurobipy:__init__:39] - Set parameter WLSAccessID
+2025-10-04 19:59:35,729 - INFO     - [gurobipy:__init__:39] - Set parameter WLSSecret
+2025-10-04 19:59:35,729 - INFO     - [gurobipy:__init__:39] - Set parameter LicenseID to value 2689313
+2025-10-04 19:59:35,731 - INFO     - [gurobipy:__init__:39] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,732 - INFO     - [gurobipy:_init_model:46] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,732 - INFO     - [gurobipy:_init_model:47] - Set parameter DualReductions to value 0
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:57] - [Node 0] Building 8 order partitioning constraints.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 0.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 1.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 2.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 3.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 4.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 5.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 6.
+2025-10-04 19:59:35,732 - DEBUG    - [root:_build_constraints:60] - [BranchNode 0] Adding constraint for order 7.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_feasible_initial_columns:68] - [Node 0] Received 8 initial columns.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0 with cost 41.60.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_1 with cost 65.20.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_2 with cost 41.20.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_3 with cost 60.40.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_4 with cost 50.80.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_5 with cost 62.40.
+2025-10-04 19:59:35,733 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_6 with cost 60.40.
+2025-10-04 19:59:35,734 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_7 with cost 67.20.
+2025-10-04 19:59:35,734 - INFO     - [root:_add_feasible_initial_columns:74] - [Node 0] RMP initialized with 8 columns.
+2025-10-04 19:59:35,734 - INFO     - [root:_create_root_node:109] - Root node (ID: 0) created successfully.
+2025-10-04 19:59:35,734 - INFO     - [root:solve:53] - Processing Node 0 (LB: inf, GUB: inf)
+2025-10-04 19:59:35,734 - INFO     - [root:solve:124] - Starting column generation for Node 0.
+2025-10-04 19:59:35,734 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 1) -------------------------
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,734 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 8 columns and 8 nonzeros
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Model fingerprint: 0xa9cfe26f
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 7e+01]
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Presolve time: 0.00s
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Presolve: All rows and columns removed
+2025-10-04 19:59:35,735 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:solve:139] -        0    4.4920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:solve:139] - Solved in 0 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:solve:139] - Optimal objective  4.492000000e+02
+2025-10-04 19:59:35,736 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 1] RMP solved (Obj: 449.20).
+2025-10-04 19:59:35,736 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 1
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,736 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,746 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,746 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x3b9cabc2
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 7e+01]
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,747 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,750 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,751 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,751 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,751 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,752 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,752 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -3.300000e+02, 132 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,753 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,753 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,753 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,754 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,754 - INFO     - [gurobipy:solve:34] - *    0     0               0    -330.0000000 -330.00000  0.00%     -    0s
+2025-10-04 19:59:35,754 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,754 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,754 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,755 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -330.00000      -     -    0s
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - Explored 5 nodes (134 simplex iterations) in 0.02 seconds (0.01 work units)
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - Solution count 3: -330 -330 -330 
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - No other solutions better than -330
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,764 - INFO     - [gurobipy:solve:34] - Best objective -3.300000000000e+02, best bound -3.300000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,765 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -330.0000. Solutions in pool: 3
+2025-10-04 19:59:35,765 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,765 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 3 solutions in the solution pool.
+2025-10-04 19:59:35,765 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,766 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4_5_6_7 with cost 119.20.
+2025-10-04 19:59:35,766 - INFO     - [root:solve:164] - [Node 0, CG Iter 1] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,766 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 2) -------------------------
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,766 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 9 columns and 16 nonzeros
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,767 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] -        0   -3.3000000e+32   8.000000e+30   3.300000e+02      0s
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,768 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 2] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,768 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 2
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,768 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,779 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,779 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x5c4141ec
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 3e+02]
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,780 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,783 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,783 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,783 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,784 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,784 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,784 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -2.668000e+02, 108 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] - *    0     0               0    -266.8000000 -266.80000  0.00%     -    0s
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,785 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,786 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,787 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,787 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,788 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,788 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -266.80000      -     -    0s
+2025-10-04 19:59:35,789 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,789 - INFO     - [gurobipy:solve:34] - Explored 35 nodes (110 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,790 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,790 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,790 - INFO     - [gurobipy:solve:34] - Solution count 18: -266.8 -266.8 -266.8 ... -266.8
+2025-10-04 19:59:35,790 - INFO     - [gurobipy:solve:34] - No other solutions better than -266.8
+2025-10-04 19:59:35,790 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,791 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,791 - INFO     - [gurobipy:solve:34] - Best objective -2.668000000000e+02, best bound -2.668000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,791 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -266.8000. Solutions in pool: 18
+2025-10-04 19:59:35,791 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,791 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 18 solutions in the solution pool.
+2025-10-04 19:59:35,791 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,792 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4_5_6 with cost 115.20.
+2025-10-04 19:59:35,792 - INFO     - [root:solve:164] - [Node 0, CG Iter 2] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,792 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 3) -------------------------
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,792 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 10 columns and 23 nonzeros
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,793 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] -        0   -2.6680000e+32   7.000000e+30   2.668000e+02      0s
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,794 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 3] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,794 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 3
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,794 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,804 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,804 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,805 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x87e4e185
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 2e+02]
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,806 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,809 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,810 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,810 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,810 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -2.104000e+02, 129 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,811 - INFO     - [gurobipy:solve:34] - *    0     0               0    -210.4000000 -210.40000  0.00%     -    0s
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,812 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,814 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,814 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,814 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,814 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -210.40000      -     -    0s
+2025-10-04 19:59:35,814 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - Explored 47 nodes (166 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - Solution count 14: -210.4 -210.4 -210.4 ... -210.4
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - No other solutions better than -210.4
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,815 - INFO     - [gurobipy:solve:34] - Best objective -2.104000000000e+02, best bound -2.104000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,815 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -210.4000. Solutions in pool: 14
+2025-10-04 19:59:35,815 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,815 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 14 solutions in the solution pool.
+2025-10-04 19:59:35,815 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,816 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4_5 with cost 111.20.
+2025-10-04 19:59:35,816 - INFO     - [root:solve:164] - [Node 0, CG Iter 3] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,816 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 4) -------------------------
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,816 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 11 columns and 29 nonzeros
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,817 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] -        0   -2.1040000e+32   6.000000e+30   2.104000e+02      0s
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,818 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 4] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,818 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 4
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,818 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,828 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,828 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,829 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0xf6d90569
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 1e+02]
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,830 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,833 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,833 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,833 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,833 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -1.560000e+02, 110 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - *    0     0               0    -156.0000000 -156.00000  0.00%     -    0s
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,834 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,835 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,836 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,836 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,836 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,836 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -156.00000      -     -    0s
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - Explored 131 nodes (197 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - Solution count 28: -156 -156 -156 ... -156
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - No other solutions better than -156
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,838 - INFO     - [gurobipy:solve:34] - Best objective -1.560000000000e+02, best bound -1.560000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,838 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -156.0000. Solutions in pool: 28
+2025-10-04 19:59:35,838 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,838 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 28 solutions in the solution pool.
+2025-10-04 19:59:35,839 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,839 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4 with cost 103.20.
+2025-10-04 19:59:35,839 - INFO     - [root:solve:164] - [Node 0, CG Iter 4] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,840 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 5) -------------------------
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,840 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 12 columns and 34 nonzeros
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -        0   -1.5600000e+32   5.000000e+30   1.560000e+02      0s
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,841 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,842 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,842 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 5] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,842 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 5
+2025-10-04 19:59:35,842 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,842 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,842 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,852 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,852 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x61ad26af
+2025-10-04 19:59:35,853 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 1e+02]
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,854 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,857 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,857 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,857 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,857 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,858 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,858 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -1.212000e+02, 101 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,858 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] - *    0     0               0    -121.2000000 -121.20000  0.00%     -    0s
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,859 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,860 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,860 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,860 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,860 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,861 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,861 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,861 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,861 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -121.20000      -     -    0s
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - Explored 3 nodes (101 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - Solution count 2: -121.2 -121.2 
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - No other solutions better than -121.2
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,862 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,863 - INFO     - [gurobipy:solve:34] - Best objective -1.212000000000e+02, best bound -1.212000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,863 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -121.2000. Solutions in pool: 2
+2025-10-04 19:59:35,863 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,863 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 2 solutions in the solution pool.
+2025-10-04 19:59:35,863 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,864 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_5_6 with cost 99.20.
+2025-10-04 19:59:35,864 - INFO     - [root:solve:164] - [Node 0, CG Iter 5] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,864 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 6) -------------------------
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,864 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 13 columns and 40 nonzeros
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,865 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:solve:139] -        0   -1.2120000e+32   5.000000e+30   1.212000e+02      0s
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:solve:139] -        2    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:solve:139] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,866 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 6] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,866 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 6
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,866 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,876 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,876 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,876 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,877 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x9bc597a5
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 7e+01]
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,878 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,881 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,881 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,882 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,882 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,882 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,882 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -1.340000e+02, 76 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - *    0     0               0    -134.0000000 -134.00000  0.00%     -    0s
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,883 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,884 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,884 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,884 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -134.00000      -     -    0s
+2025-10-04 19:59:35,884 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -134.00000      -     -    0s
+2025-10-04 19:59:35,889 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -134.00000      -     -    0s
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - Explored 7 nodes (78 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - Solution count 2: -134 -134 
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - No other solutions better than -134
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,890 - INFO     - [gurobipy:solve:34] - Best objective -1.340000000000e+02, best bound -1.340000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,890 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -134.0000. Solutions in pool: 2
+2025-10-04 19:59:35,890 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,890 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 2 solutions in the solution pool.
+2025-10-04 19:59:35,890 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,891 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_7 with cost 81.20.
+2025-10-04 19:59:35,891 - INFO     - [root:solve:164] - [Node 0, CG Iter 6] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,891 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 7) -------------------------
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,891 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 14 columns and 44 nonzeros
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,892 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] -        0   -1.3400000e+32   4.000000e+30   1.340000e+02      0s
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] -        2    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,893 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,893 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 7] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,893 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 7
+2025-10-04 19:59:35,894 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,894 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,894 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,904 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,904 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x1daaf1a1
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 7e+01]
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,905 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,908 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,908 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,909 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,909 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,909 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,909 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -1.068000e+02, 106 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,910 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,910 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,910 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,910 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,910 - INFO     - [gurobipy:solve:34] - H    0     0                    -106.8000000 -106.80000  0.00%     -    0s
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] -      0     0          -    0      -106.80000 -106.80000  0.00%     -    0s
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,911 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,912 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,912 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,912 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -106.80000      -     -    0s
+2025-10-04 19:59:35,912 - INFO     - [gurobipy:solve:34] -      0     0          -    0               - -106.80000      -     -    0s
+2025-10-04 19:59:35,913 - INFO     - [gurobipy:solve:34] -      0     2          -    0               - -106.80000      -     -    0s
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - Explored 15 nodes (134 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - Solution count 1: -106.8 
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - No other solutions better than -106.8
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,914 - INFO     - [gurobipy:solve:34] - Best objective -1.068000000000e+02, best bound -1.068000000000e+02, gap 0.0000%
+2025-10-04 19:59:35,914 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -106.8000. Solutions in pool: 1
+2025-10-04 19:59:35,914 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,914 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 1 solutions in the solution pool.
+2025-10-04 19:59:35,915 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,915 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_1_2_3_7 with cost 89.20.
+2025-10-04 19:59:35,915 - INFO     - [root:solve:164] - [Node 0, CG Iter 7] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,915 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 8) -------------------------
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,915 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 15 columns and 48 nonzeros
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,916 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:solve:139] -        0   -1.0680000e+32   4.500000e+30   1.068000e+02      0s
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:solve:139] -        3    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:solve:139] - Solved in 3 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,917 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 8] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,917 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 8
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,917 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,927 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,927 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,928 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x966aeaa8
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 7e+01]
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,929 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,932 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,932 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,932 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,932 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,933 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,933 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -7.040000e+01, 110 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,933 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,933 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] - *    0     0               0     -70.4000000  -70.40000  0.00%     -    0s
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,934 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,935 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,935 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,935 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,935 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -  -70.40000      -     -    0s
+2025-10-04 19:59:35,935 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -  -70.40000      -     -    0s
+2025-10-04 19:59:35,936 - INFO     - [gurobipy:solve:34] -      0     2          -    0               -  -70.40000      -     -    0s
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - Explored 95 nodes (202 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - Solution count 10: -70.4 -70.4 -70.4 ... -70.4
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - No other solutions better than -70.4
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,938 - INFO     - [gurobipy:solve:34] - Best objective -7.040000000000e+01, best bound -7.040000000000e+01, gap 0.0000%
+2025-10-04 19:59:35,939 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -70.4000. Solutions in pool: 10
+2025-10-04 19:59:35,939 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,939 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 10 solutions in the solution pool.
+2025-10-04 19:59:35,939 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,939 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_1_2_4_5 with cost 91.20.
+2025-10-04 19:59:35,939 - INFO     - [root:solve:164] - [Node 0, CG Iter 8] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,940 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 9) -------------------------
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,940 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 16 columns and 52 nonzeros
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -        0   -7.0400000e+31   7.000000e+30   7.040000e+01      0s
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] -        2    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Solved in 2 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,941 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,942 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 9] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,942 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 9
+2025-10-04 19:59:35,942 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,942 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,942 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,952 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,952 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,952 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,952 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,952 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,952 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,953 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x14c2a7d4
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 4e+01]
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,954 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,957 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,957 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,957 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,957 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,959 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,959 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -6.666667e+00, 160 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] -      0     0   -6.66667    0   38  161.60000   -6.66667   104%     -    0s
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] - H    0     0                      -0.0000000   -6.66667      -     -    0s
+2025-10-04 19:59:35,960 - INFO     - [gurobipy:solve:34] - H    0     0                      -6.0000000   -6.66667  11.1%     -    0s
+2025-10-04 19:59:35,962 - INFO     - [gurobipy:solve:34] -      0     0          -    0        -6.00000   -6.00000  0.00%     -    0s
+2025-10-04 19:59:35,962 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,962 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,963 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -6.00000      -     -    0s
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - Explored 1 nodes (166 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - Solution count 1: -6 
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - No other solutions better than -6
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,968 - INFO     - [gurobipy:solve:34] - Best objective -6.000000000000e+00, best bound -6.000000000000e+00, gap 0.0000%
+2025-10-04 19:59:35,969 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -6.0000. Solutions in pool: 1
+2025-10-04 19:59:35,969 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,969 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 1 solutions in the solution pool.
+2025-10-04 19:59:35,969 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,969 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_1_2_4_7 with cost 83.20.
+2025-10-04 19:59:35,969 - INFO     - [root:solve:164] - [Node 0, CG Iter 9] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,970 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 10) -------------------------
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,970 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 17 columns and 56 nonzeros
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:35,971 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] -        0   -6.0000000e+30   2.250000e+30   6.000000e+00      0s
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:35,972 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 10] RMP solved (Obj: 119.20).
+2025-10-04 19:59:35,972 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 10
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:35,972 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:35,982 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:35,982 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:35,983 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0x340bdc6a
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:35,984 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:35,985 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:35,985 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 4e+01]
+2025-10-04 19:59:35,985 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:35,985 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:35,985 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:35,988 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:35,988 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:35,988 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:35,988 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:35,989 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,989 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -6.600000e+00, 160 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] -      0     0   -6.60000    0   41  161.60000   -6.60000   104%     -    0s
+2025-10-04 19:59:35,991 - INFO     - [gurobipy:solve:34] - H    0     0                      34.0000000   -6.60000   119%     -    0s
+2025-10-04 19:59:35,992 - INFO     - [gurobipy:solve:34] - H    0     0                      24.0000000   -6.60000   128%     -    0s
+2025-10-04 19:59:35,992 - INFO     - [gurobipy:solve:34] - H    0     0                      12.0000000   -6.60000   155%     -    0s
+2025-10-04 19:59:35,993 - INFO     - [gurobipy:solve:34] - H    0     0                       2.0000000   -6.60000   430%     -    0s
+2025-10-04 19:59:35,995 - INFO     - [gurobipy:solve:34] - H    0     0                      -4.0000000   -4.20000  5.00%     -    0s
+2025-10-04 19:59:35,995 - INFO     - [gurobipy:solve:34] -      0     0          -    0        -4.00000   -4.00000  0.00%     -    0s
+2025-10-04 19:59:35,995 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,995 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,996 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:35,997 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:35,997 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:35,997 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:35,997 - INFO     - [gurobipy:solve:34] -      0     2          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - Explored 7 nodes (181 simplex iterations) in 0.01 seconds (0.01 work units)
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - Solution count 4: -4 -4 -4 -4 
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - No other solutions better than -4
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:35,998 - INFO     - [gurobipy:solve:34] - Best objective -4.000000000000e+00, best bound -4.000000000000e+00, gap 0.0000%
+2025-10-04 19:59:35,998 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -4.0000. Solutions in pool: 4
+2025-10-04 19:59:35,998 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:35,998 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 4 solutions in the solution pool.
+2025-10-04 19:59:35,999 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:35,999 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4_5_7 with cost 115.20.
+2025-10-04 19:59:35,999 - INFO     - [root:solve:164] - [Node 0, CG Iter 10] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:35,999 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 11) -------------------------
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:35,999 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 18 columns and 63 nonzeros
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:36,000 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] -        0   -4.0000000e+30   2.333333e+30   4.000000e+00      0s
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] -        1    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] - Solved in 1 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:36,001 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 11] RMP solved (Obj: 119.20).
+2025-10-04 19:59:36,001 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 11
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:36,001 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:36,011 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:36,011 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0xbf2a7d36
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:36,012 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 4e+01]
+2025-10-04 19:59:36,013 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:36,013 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:36,013 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:36,016 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:36,016 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:36,016 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:36,016 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:36,017 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,017 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -6.000000e+00, 174 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:36,018 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,018 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:36,019 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:36,019 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,019 - INFO     - [gurobipy:solve:34] -      0     0   -6.00000    0   44  161.60000   -6.00000   104%     -    0s
+2025-10-04 19:59:36,019 - INFO     - [gurobipy:solve:34] - H    0     0                      72.4000000   -6.00000   108%     -    0s
+2025-10-04 19:59:36,019 - INFO     - [gurobipy:solve:34] - H    0     0                      24.8000000   -6.00000   124%     -    0s
+2025-10-04 19:59:36,020 - INFO     - [gurobipy:solve:34] - H    0     0                      16.8000000   -6.00000   136%     -    0s
+2025-10-04 19:59:36,022 - INFO     - [gurobipy:solve:34] - H    0     0                      -4.0000000   -6.00000  50.0%     -    0s
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] -      0     0          -    0        -4.00000   -4.00000  0.00%     -    0s
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:36,023 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:36,024 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:36,024 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,024 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:36,026 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:36,027 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:36,027 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:36,027 - INFO     - [gurobipy:solve:34] -      0     2          -    0               -   -4.00000      -     -    0s
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - Explored 7 nodes (195 simplex iterations) in 0.02 seconds (0.01 work units)
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - Solution count 4: -4 -4 -4 -4 
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - No other solutions better than -4
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:36,028 - INFO     - [gurobipy:solve:34] - Best objective -4.000000000000e+00, best bound -4.000000000000e+00, gap 0.0000%
+2025-10-04 19:59:36,029 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: -4.0000. Solutions in pool: 4
+2025-10-04 19:59:36,029 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:36,029 - DEBUG    - [root:get_profitable_columns:57] - [Subproblem] Found 4 solutions in the solution pool.
+2025-10-04 19:59:36,029 - DEBUG    - [root:get_profitable_columns:80] - [Subproblem] Found 1 profitable columns.
+2025-10-04 19:59:36,029 - DEBUG    - [root:_add_column_to_rmp:119] - [BranchNode 0] Added column batch_0_1_2_3_4_7 with cost 107.20.
+2025-10-04 19:59:36,030 - INFO     - [root:solve:164] - [Node 0, CG Iter 11] Added 1 new columns. RMP Obj: inf.
+2025-10-04 19:59:36,030 - INFO     - [root:solve:136] - ------------------------- Solving RMP (Iter 12) -------------------------
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - Non-default parameters:
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - DualReductions  0
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - LogToConsole  0
+2025-10-04 19:59:36,030 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Optimize a model with 8 rows, 19 columns and 69 nonzeros
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Coefficient statistics:
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -   Matrix range     [1e+00, 1e+00]
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -   Objective range  [4e+01, 1e+02]
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -   Bounds range     [0e+00, 0e+00]
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -   RHS range        [1e+00, 1e+00]
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - LP warm-start: use basis
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Iteration    Objective       Primal Inf.    Dual Inf.      Time
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -        0   -4.0000000e+30   2.000000e+30   4.000000e+00      0s
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] -        3    1.1920000e+02   0.000000e+00   0.000000e+00      0s
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - 
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Solved in 3 iterations and 0.00 seconds (0.00 work units)
+2025-10-04 19:59:36,031 - INFO     - [gurobipy:solve:139] - Optimal objective  1.192000000e+02
+2025-10-04 19:59:36,032 - DEBUG    - [root:solve:143] - [Node 0, CG Iter 12] RMP solved (Obj: 119.20).
+2025-10-04 19:59:36,032 - DEBUG    - [root:_solve_profitable_sprp_subproblem:169] - [CG] Solving subproblem for node 0 at iteration 12
+2025-10-04 19:59:36,032 - INFO     - [gurobipy:build:42] - Set parameter LogToConsole to value 0
+2025-10-04 19:59:36,032 - INFO     - [gurobipy:build:43] - Set parameter MIPGap to value 0
+2025-10-04 19:59:36,032 - INFO     - [gurobipy:build:44] - Set parameter TimeLimit to value 1800
+2025-10-04 19:59:36,042 - DEBUG    - [root:solve:24] - [Subproblem] Solving subproblem...
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:28] - Set parameter PoolSearchMode to value 2
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:29] - Set parameter PoolSolutions to value 50
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:30] - Set parameter PoolGap to value 0
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (linux64 - "Ubuntu 22.04.4 LTS")
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - CPU model: 13th Gen Intel(R) Core(TM) i5-13420H, instruction set [SSE2|AVX|AVX2]
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - Thread count: 6 physical cores, 12 logical processors, using up to 12 threads
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - Non-default parameters:
+2025-10-04 19:59:36,042 - INFO     - [gurobipy:solve:34] - TimeLimit  1800
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - MIPGap  0
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - LogToConsole  0
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - PoolSolutions  50
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - PoolSearchMode  2
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - PoolGap  0
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - Academic license 2689313 - for non-commercial use only - registered to da___@itu.edu.tr
+2025-10-04 19:59:36,043 - INFO     - [gurobipy:solve:34] - Optimize a model with 175 rows, 572 columns and 1770 nonzeros
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] - Model fingerprint: 0xfc376093
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 572 integer (572 binary)
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] - Coefficient statistics:
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] -   Matrix range     [1e+00, 3e+00]
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] -   Objective range  [2e+00, 4e+01]
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] -   Bounds range     [1e+00, 1e+00]
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] -   RHS range        [1e+00, 2e+01]
+2025-10-04 19:59:36,044 - INFO     - [gurobipy:solve:34] - Found heuristic solution: objective 161.6000000
+2025-10-04 19:59:36,047 - INFO     - [gurobipy:solve:34] - Presolve removed 50 rows and 142 columns
+2025-10-04 19:59:36,047 - INFO     - [gurobipy:solve:34] - Presolve time: 0.00s
+2025-10-04 19:59:36,047 - INFO     - [gurobipy:solve:34] - Presolved: 125 rows, 430 columns, 1282 nonzeros
+2025-10-04 19:59:36,047 - INFO     - [gurobipy:solve:34] - Variable types: 0 continuous, 430 integer (430 binary)
+2025-10-04 19:59:36,049 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,049 - INFO     - [gurobipy:solve:34] - Root relaxation: objective -5.280000e+00, 182 iterations, 0.00 seconds (0.00 work units)
+2025-10-04 19:59:36,050 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,050 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |     Objective Bounds      |     Work
+2025-10-04 19:59:36,050 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:36,050 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,050 - INFO     - [gurobipy:solve:34] -      0     0   -5.28000    0   54  161.60000   -5.28000   103%     -    0s
+2025-10-04 19:59:36,051 - INFO     - [gurobipy:solve:34] - H    0     0                      16.8000000   -5.28000   131%     -    0s
+2025-10-04 19:59:36,051 - INFO     - [gurobipy:solve:34] - H    0     0                       8.0000000   -5.28000   166%     -    0s
+2025-10-04 19:59:36,052 - INFO     - [gurobipy:solve:34] - H    0     0                       4.0000000   -5.28000   232%     -    0s
+2025-10-04 19:59:36,056 - INFO     - [gurobipy:solve:34] -      0     0   -2.13333    0   62    4.00000   -2.13333   153%     -    0s
+2025-10-04 19:59:36,066 - INFO     - [gurobipy:solve:34] -      0     0   -2.13333    0   44    4.00000   -2.13333   153%     -    0s
+2025-10-04 19:59:36,067 - INFO     - [gurobipy:solve:34] - H    0     0                       2.0000000   -2.13333   207%     -    0s
+2025-10-04 19:59:36,067 - INFO     - [gurobipy:solve:34] - H    0     0                       0.0000000   -2.13333      -     -    0s
+2025-10-04 19:59:36,070 - INFO     - [gurobipy:solve:34] -      0     0   -2.10000    0   55    0.00000   -2.10000      -     -    0s
+2025-10-04 19:59:36,073 - INFO     - [gurobipy:solve:34] -      0     0   -2.10000    0   26    0.00000   -2.10000      -     -    0s
+2025-10-04 19:59:36,073 - INFO     - [gurobipy:solve:34] -      0     0   -2.00000    0   22    0.00000   -2.00000      -     -    0s
+2025-10-04 19:59:36,075 - INFO     - [gurobipy:solve:34] -      0     0          -    0        -0.00000    0.00000  0.00%     -    0s
+2025-10-04 19:59:36,075 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,075 - INFO     - [gurobipy:solve:34] - Optimal solution found at node 0 - now completing solution pool...
+2025-10-04 19:59:36,075 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] -     Nodes    |    Current Node    |      Pool Obj. Bounds     |     Work
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] -              |                    |   Worst                   |
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] -  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,076 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,077 - INFO     - [gurobipy:solve:34] -      0     0    0.00000    0   17          -    0.00000      -     -    0s
+2025-10-04 19:59:36,079 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,079 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,080 - INFO     - [gurobipy:solve:34] -      0     0          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,080 - INFO     - [gurobipy:solve:34] -      0     2          -    0               -    0.00000      -     -    0s
+2025-10-04 19:59:36,082 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,082 - INFO     - [gurobipy:solve:34] - Cutting planes:
+2025-10-04 19:59:36,082 - INFO     - [gurobipy:solve:34] -   Gomory: 3
+2025-10-04 19:59:36,082 - INFO     - [gurobipy:solve:34] -   Clique: 1
+2025-10-04 19:59:36,082 - INFO     - [gurobipy:solve:34] -   Zero half: 2
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - Explored 129 nodes (449 simplex iterations) in 0.04 seconds (0.02 work units)
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - Thread count was 12 (of 12 available processors)
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - Solution count 37: -7.10543e-15 -7.10543e-15 -7.10543e-15 ... 0
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - No other solutions better than 0
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - 
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - Optimal solution found (tolerance 0.00e+00)
+2025-10-04 19:59:36,083 - INFO     - [gurobipy:solve:34] - Best objective 7.105427357601e-15, best bound -7.105427357601e-15, gap 0.0000%
+2025-10-04 19:59:36,084 - DEBUG    - [root:solve:38] - Subproblem solved. Reduced Cost: 0.0000. Solutions in pool: 37
+2025-10-04 19:59:36,084 - DEBUG    - [root:get_profitable_columns:48] - [Subproblem] Extracting profitable columns...
+2025-10-04 19:59:36,084 - DEBUG    - [root:get_profitable_columns:51] - [Subproblem] No profitable columns found (objective is non-negative or subproblem is infeasible).
+2025-10-04 19:59:36,085 - INFO     - [root:solve:158] - [CG] Pricing problem found no profitable columns. CG converged on node 0.
+2025-10-04 19:59:36,085 - INFO     - [root:solve:166] - Column generation finished for Node 0. Final RMP Objective: 119.20
+2025-10-04 19:59:36,085 - INFO     - [root:solve:67] - [B&P] Found integer solution at Node 0.
+2025-10-04 19:59:36,085 - INFO     - [root:solve:71] - [B&P] New Global Upper Bound: 119.20
+2025-10-04 19:59:36,086 - INFO     - [root:solve:85] - ==================================================
+2025-10-04 19:59:36,086 - INFO     - [root:solve:86] - Branch and Price finished. Best integer solution found:
+2025-10-04 19:59:36,086 - INFO     - [root:report_integer_solution:212] - ** Integral solution found at node 0! **
+2025-10-04 19:59:36,086 - INFO     - [root:report_integer_solution:213] - Total Tour Cost: 119.20
+2025-10-04 19:59:36,086 - INFO     - [root:report_integer_solution:220] - Final Batches:
+2025-10-04 19:59:36,086 - INFO     - [root:report_integer_solution:222] -   Batch 1: Orders [0, 1, 2, 3, 4, 5, 6, 7] (Cost: 119.20)
+2025-10-04 19:59:36,086 - INFO     - [root:report_integer_solution:223] - 
+2025-10-04 19:59:36,086 - INFO     - [root:main:91] - Solver finished. Final objective value: 119.19999999999999
