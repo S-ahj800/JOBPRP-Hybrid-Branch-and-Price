@@ -40,7 +40,7 @@ class Subproblem:
         with redirect_stdout(io.StringIO()):
             self._model.setParam(gp.GRB.Param.PoolSearchMode, 2)
             self._model.setParam(gp.GRB.Param.PoolSolutions, 50)
-            self._model.setParam(gp.GRB.Param.PoolGap, 0.0)
+            self._model.setParam(gp.GRB.Param.PoolGap, 0.1)
 
         try:
             with redirect_stdout(StreamToLogger(gurobi_logger, logging.DEBUG)):
@@ -80,6 +80,8 @@ class Subproblem:
         logging.debug(f"[Subproblem] Found {num_solutions} solutions in the solution pool.")
 
         for i in range(num_solutions):
+            # [FIX] Tell Gurobi to look at the i-th solution in the pool
+            self._model.setParam(gp.GRB.Param.SolutionNumber, i)
             try:
                 selected_orders = [
                     oid for oid, var in self.order_to_variable.items() if is_non_zero(var.Xn)]

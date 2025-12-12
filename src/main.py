@@ -49,28 +49,44 @@ def main():
         description="Solves the Joint Order Batching and Picker Routing Problem (JOBPRP) using Branch and Price."
     )
     parser.add_argument('instance_path', type=str, help='Path to the JOBPRP instance file.')
+    parser.add_argument('--detailed-log', action='store_true', help='Enable detailed logging saved to the instance directory.')
     args = parser.parse_args()
 
     # --- 3. Run the Solver ---
     try:
         instance_name_base = os.path.splitext(os.path.basename(args.instance_path))[0]
-        log_directory = f"{instance_name_base}_run_logs"
+        
+        # [MODIFIED LOGIC START]
+        if args.detailed_log:
+            # Save in the same directory as the instance file
+            instance_dir = os.path.dirname(os.path.abspath(args.instance_path))
+            log_directory = os.path.join(instance_dir, f"{instance_name_base}_run_logs")
+        else:
+            # Default: Save in current working directory
+            log_directory = f"{instance_name_base}_run_logs"
+
         os.makedirs(log_directory, exist_ok=True)
-        log_filename = os.path.join(log_directory, f"{instance_name_base}.log")
 
-        # Create and configure the file handler
-        file_handler = logging.FileHandler(log_filename, mode='w')
-        file_handler.setLevel(logging.DEBUG)
-        file_formatter = logging.Formatter('%(asctime)s - %(levelname)-8s - [%(name)s:%(funcName)s:%(lineno)d] - %(message)s')
-        file_handler.setFormatter(file_formatter)
+        # Only attach the debug file handler if the argument was passed
+        if args.detailed_log:
+            log_filename = os.path.join(log_directory, f"{instance_name_base}.log")
 
-        # Add the file handler to the root logger
-        root_logger = logging.getLogger()
-        root_logger.addHandler(file_handler)
-        # Ensure the root logger's level is low enough to pass all messages
-        root_logger.setLevel(logging.DEBUG)
+            file_handler = logging.FileHandler(log_filename, mode='w')
+            file_handler.setLevel(logging.DEBUG)
+            file_formatter = logging.Formatter('%(asctime)s - %(levelname)-8s - [%(name)s:%(funcName)s:%(lineno)d] - %(message)s')
+            file_handler.setFormatter(file_formatter)
 
-        logging.info(f"Detailed DEBUG log will be saved to: {log_filename}")
+            root_logger = logging.getLogger()
+            root_logger.addHandler(file_handler)
+            root_logger.setLevel(logging.DEBUG)
+
+            # Keep console output clean (INFO only) while file gets DEBUG
+            for handler in root_logger.handlers:
+                if isinstance(handler, logging.StreamHandler):
+                    handler.setLevel(logging.INFO)
+
+            logging.info(f"Detailed DEBUG log will be saved to: {log_filename}")
+        # [MODIFIED LOGIC END]
 
     except Exception as e:
         logging.error(f"Failed to set up file logging: {e}")

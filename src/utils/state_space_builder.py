@@ -14,7 +14,7 @@ TState = str
 TStage = str
 TNode = Tuple[TStage, TState]
 
-RR_STATES = {e.value for e in EquivalenceClass}
+RR_STATES = sorted([e.value for e in EquivalenceClass])
 
 
 # =============================================================================

@@ -1,0 +1,3 @@
+﻿problem type,benchmark set,filename,number of orders,capacity,random seed,policy,opt?,UB,LB,time [s]
+OrderBatching,MUTER_ONCAN,instances\Muter_Oncan\ins_20_24_0.txt,20,24,1,optimal,TRUE,649,649,397.606
+OrderBatching,MUTER_ONCAN,instances\Muter_Oncan\ins_20_24_1.txt,20,24,2,optimal,TRUE,655,655,458.108

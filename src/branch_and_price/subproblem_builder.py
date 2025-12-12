@@ -57,6 +57,11 @@ class SubproblemBuilder:
         # 1. Initialize Model
         model_name = f'subproblem_node{node_id}_iter{iteration}'
         model = gp.Model(model_name)
+
+        # [DETERMINISM FIX] Lock threads and seed
+        model.setParam('Threads', 1)
+        model.setParam('Seed', 42)
+        
         model.setAttr(gp.GRB.Attr.ModelSense, gp.GRB.MINIMIZE)
         model.Params.LogToConsole = 0
         model.Params.MIPGap = 0.0

@@ -1,10 +1,9 @@
 import itertools
 import logging
 import math
-import os
 import random
 from collections import defaultdict
-from typing import List, Dict, Tuple, Optional, Set
+from typing import List, Dict, Tuple, Optional
 from contextlib import redirect_stdout
 import io
 
@@ -41,21 +40,37 @@ class BranchNode:
                  state_space_graph: StateSpaceGraph,
                  branching_rules: List[BranchingRule],
                  log_directory: str,
-                 initial_columns: List[TBatchColumn]
-                 ):
+                 initial_columns: List[TBatchColumn],
+                 enable_heuristic: bool = True,
+                 global_stats: Dict = None):
+
         self.id = next(BranchNode.next_node_id)
         self.jobprp_instance = jobprp_instance
         self.branching_rules = branching_rules
         self.log_directory = log_directory
+
+        # --- CONFIGURATION ---
+        self.enable_heuristic = enable_heuristic
+        self.global_stats = global_stats if global_stats is not None else defaultdict(int)
+
         self.subproblem_builder = SubproblemBuilder(jobprp_instance, state_space_graph)
-        logging.debug(f"[BranchNode {self.id}] Initialized with orders: {list(self.jobprp_instance.orders.keys())}")
+
+        # DEBUG: Low-level initialization info
+        logging.debug(f"[BranchNode {self.id}] Initialized with {len(initial_columns)} initial columns.")
+
         self.column_index: Dict[int, TBatchColumn] = {}
         self.column_index_to_variable: bidict[int, gp.Var] = bidict()
         self.next_column_index = itertools.count(start=0)
+
         self._rmp = gp.Model(f'JOBPRP_RMP_{self.id}')
+
+        # [PERFORMANCE SETTINGS]
+        self._rmp.setParam('Seed', 42)
+
         self.order_partitioning_constraints: Dict[TOrderID, gp.Constr] = {}
+
         self.order_cache = self._build_order_cache()
-        self.heuristic_success_count = 0
+
         self._init_model(initial_columns)
 
     def _build_order_cache(self) -> Dict[int, Dict]:
@@ -63,6 +78,9 @@ class BranchNode:
             Pre-computes weight and aisle affinity data for all orders.
             This avoids repeated lookups during the heuristic pricing loop.
             """
+            if not self.enable_heuristic:
+                return {}
+
             cache = {}
 
             # Pre-map article IDs to their locations for faster lookup
@@ -74,14 +92,10 @@ class BranchNode:
                 involved_aisles = set()
                 for line in order.order_lines:
                     # Add all aisles where this SKU is located
-                    locs = sku_to_locs.get(line.article.id, [])
-                    for loc in locs:
+                    for loc in sku_to_locs.get(line.article.id, []):
                         involved_aisles.add(loc.aisle)
 
-                cache[oid] = {
-                    'weight': order.total_weight,
-                    'aisles': involved_aisles
-                }
+                cache[oid] = {'weight': order.total_weight,'aisles': involved_aisles}
             return cache
 
     def _calculate_batch_tour_cost(self, batch_ids: List[int]) -> float:
@@ -94,14 +108,13 @@ class BranchNode:
 
         # Identify data for the sub-instance
         for oid in batch_ids:
-            order = self.jobprp_instance.orders[oid]
-            batch_orders[oid] = order
-            for line in order.order_lines:
+            batch_orders[oid] = self.jobprp_instance.orders[oid]
+            for line in batch_orders[oid].order_lines:
                 required_skus.add(line.article.id)
 
         # Create temporary instance
         temp_instance = JOBPRPInstance(
-            name=f"temp_heuristic_{self.id}",
+            name=f"temp_{self.id}",
             picker_capacity=self.jobprp_instance.picker_capacity,
             layout=self.jobprp_instance.layout,
             articles={aid: art for aid, art in self.jobprp_instance.articles.items() if aid in required_skus},
@@ -114,21 +127,16 @@ class BranchNode:
         dp_table = solver.solve()
 
         # Extract final cost
-        final_stage_key = f"{self.jobprp_instance.layout.num_aisles - 1}+"
-        final_stage_data = dp_table.get(final_stage_key, {})
+        final_key = f"{self.jobprp_instance.layout.num_aisles - 1}+"
+        data = dp_table.get(final_key, {})
 
-        valid_terminal_states = [
+        valid_states = [
             EquivalenceClass.E01C, EquivalenceClass.ZE1C,
             EquivalenceClass.EE1C, EquivalenceClass.ZZ1C
         ]
 
-        costs = []
-        for state in valid_terminal_states:
-            val = final_stage_data.get(state.value, {}).get('cost', float('inf'))
-            costs.append(val)
-
-        min_cost = min(costs) if costs else float('inf')
-        return min_cost
+        costs = [data.get(s.value, {}).get('cost', float('inf')) for s in valid_states]
+        return min(costs) if costs else float('inf')
 
     def _init_model(self, initial_columns: List[TBatchColumn]):
         """Initializes the Gurobi model, constraints, and initial columns."""
@@ -145,13 +153,9 @@ class BranchNode:
     def _build_constraints(self):
         """Builds the set partitioning constraints for the master problem."""
 
-        num_orders = len(self.jobprp_instance.orders)
-        logging.debug(f"[Node {self.id}] Building {num_orders} order partitioning constraints.")
-
-        for order_id in self.jobprp_instance.orders:
-            # logging.debug(f"[BranchNode {self.id}] Adding constraint for order {order_id}.")
-            self.order_partitioning_constraints[order_id] = self._rmp.addConstr(
-                gp.quicksum([]) == 1.0, name=f"order_{order_id}"
+        for oid in self.jobprp_instance.orders:
+            self.order_partitioning_constraints[oid] = self._rmp.addConstr(
+                gp.quicksum([]) == 1.0, name=f"order_{oid}"
             )
 
     def _add_feasible_initial_columns(self, initial_columns: List[TBatchColumn]):
@@ -173,21 +177,24 @@ class BranchNode:
 
         if not branching_rules:
             return columns
+
         valid_columns = []
         for batch, cost in columns:
             is_valid = True
             batch_set = set(batch)
             for rule in branching_rules:
-                o1_in_batch = rule.order1 in batch_set
-                o2_in_batch = rule.order2 in batch_set
-                if rule.orders_together and (o1_in_batch != o2_in_batch):
-                    is_valid = False
-                    break
-                if not rule.orders_together and (o1_in_batch and o2_in_batch):
-                    is_valid = False
-                    break
-            if is_valid:
-                valid_columns.append((batch, cost))
+                o1_in = rule.order1 in batch_set
+                o2_in = rule.order2 in batch_set
+
+                if rule.orders_together:
+                    # Both must be in or both must be out
+                    if o1_in != o2_in:
+                        is_valid = False; break
+                else:
+                    # Cannot both be in
+                    if o1_in and o2_in:
+                        is_valid = False; break
+            if is_valid: valid_columns.append((batch, cost))
         return valid_columns
 
     def _add_column_to_rmp(self, batch_column: TBatchColumn):
@@ -203,8 +210,9 @@ class BranchNode:
             constraint = self._rmp.getConstrByName(constr_name)
             if constraint is None:
                 logging.error(f"[BranchNode {self.id}] FATAL: Could not find constraint '{constr_name}' for order {order_id}.")
-                raise ValueError(f"Constraint '{constr_name}' not found in the RMP model.")
+                continue
             gurobi_col.addTerms(1.0, constraint)
+
         rmp_var = self._rmp.addVar(
             lb=0.0, obj=tour_cost, vtype=gp.GRB.CONTINUOUS,
             name=var_name, column=gurobi_col
@@ -212,56 +220,43 @@ class BranchNode:
         self._rmp.update()
         self.column_index_to_variable[internal_column_idx] = rmp_var
 
-        # logging.debug(f"[Node {self.id}] Added column {var_name} with cost {tour_cost:.2f}.")
-
     def solve(self):
         """
         Solves the LP relaxation of the Restricted Master Problem (RMP).
         """
 
-        logging.info(f"Starting column generation for Node {self.id}.")
+        logging.debug(f"Starting column generation for Node {self.id}.")
         col_gen_itr = itertools.count(start=1)
         gurobi_logger = logging.getLogger('Gurobi_RMP')
 
         while True:
             iteration = next(col_gen_itr)
             self._rmp.update()
-            # Optional: Write LP for debugging
-            # lp_filename = os.path.join(self.log_directory, f"RMP_node{self.id}_iter{iteration}.lp")
-            # self._rmp.write(lp_filename)
-
-            # logging.info("-" * 25 + f" Solving RMP (Iter {iteration}) " + "-" * 25)
 
             with redirect_stdout(StreamToLogger(gurobi_logger, logging.DEBUG)):
                 self._rmp.optimize()
 
             # Log Essential Gurobi Results
-            if has_solution(self._rmp.status):
-                logging.debug(f"[Node {self.id}, CG Iter {iteration}] RMP solved (Obj: {self._rmp.ObjVal:.2f}).")
-            else:
-                logging.warning(f"[Node {self.id}, CG Iter {iteration}] RMP became infeasible or unbounded (Status: {self._rmp.status}).")
+            if not has_solution(self._rmp.status):
+                logging.debug(f"[Node {self.id}] RMP infeasible or unbounded.")
                 break
 
             try:
                 order_duals = {oid: c.Pi for oid, c in self.order_partitioning_constraints.items()}
 
             except AttributeError:
-                logging.warning(f"[Node {self.id}] Could not retrieve dual values. Stopping CG.")
                 break
 
             profitable_columns = self._solve_profitable_sprp_subproblem(order_duals, iteration)
 
             if not profitable_columns:
-                logging.info(f"[CG] Pricing problem found no profitable columns. CG converged on node {self.id}.")
+                logging.debug(f"[Node {self.id}] CG converged.")
                 break
 
             for col in profitable_columns:
                 self._add_column_to_rmp(col)
 
-            logging.info(f"[Node {self.id}, CG Iter {iteration}] Added {len(profitable_columns)} new columns. RMP Obj: {self.objective_value():.2f}.")
-
-        logging.info(f"Column generation finished for Node {self.id}. Final RMP Objective: {self.objective_value():.2f}")
-        logging.info(f"  -> Heuristic Pricing used in {self.heuristic_success_count} iterations.")
+            logging.debug(f"[Node {self.id}, Iter {iteration}] Added {len(profitable_columns)} columns. LP Obj: {self.objective_value():.2f}")
 
     def _solve_profitable_sprp_subproblem(self, order_duals: Dict[TOrderID, float], iteration: int) -> List[TBatchColumn]:
         """
@@ -275,10 +270,119 @@ class BranchNode:
             A list of new, profitable columns to be added to the RMP.
         """
 
-        heuristic_columns = []
+        self.global_stats['Total_CG_Iter'] += 1
+
+        # --- PHASE 1: HEURISTIC ---
+        if self.enable_heuristic:
+            heuristic_cols = self._run_heuristic(order_duals, iteration)
+            if heuristic_cols:
+                self.global_stats['Heur_Calls'] += 1
+                return heuristic_cols
+
+        # --- PHASE 2: EXACT FALLBACK ---
+        self.global_stats['Exact_Calls'] += 1
+        logging.debug(f"[Node {self.id}] Heuristic failed/disabled. Calling Gurobi.")
+
+        subproblem = self.subproblem_builder.build(
+            order_duals, self.branching_rules, self.id, iteration, self.log_directory
+        )
+        subproblem._model.setParam('Seed', 42)
+        subproblem.solve()
+
+        exact_cols = subproblem.get_profitable_columns()
+        # Stable sort for consistency
+        exact_cols.sort(key=lambda c: (round(c[1], 4), len(c[0]), tuple(sorted(c[0]))))
+        return exact_cols
+
+    def _run_heuristic(self, order_duals, iteration):
+        """Phase 1: Smart Greedy Heuristic."""
+
+        # Use deterministic seeding logic
+        local_seed = 42 + (self.id * 100000) + iteration
+        rng = random.Random(local_seed)
+
+        num_orders = len(self.jobprp_instance.orders)
+
+        # --- DYNAMIC PARAMETER TUNING ---
+        config = {
+            'num_attempts': int(num_orders * 5),
+            'max_columns': max(5, int(num_orders // 5)),
+            'aisle_limit': 2,
+            'seed_limit_pct': 0.25
+        }
 
         # 1. Filter and Sort Orders by (Dual / Weight)
         # We only consider orders with positive duals as candidates to improve the objective
+        groups = self._get_unique_groups()
+        candidates = []
+        for grp in groups:
+            duals = sum(order_duals.get(o, 0) for o in grp)
+            w = sum(self.order_cache[o]['weight'] for o in grp)
+            if duals > 1e-5:
+                candidates.append({'grp': grp, 'w': w, 'score': duals/w})
+
+        sorted_cand = sorted(candidates, key=lambda x: (x['score'], x['grp'][0]), reverse=True)
+        if not sorted_cand:
+            return []
+
+        avg_score = sum(c['score'] for c in sorted_cand) / len(sorted_cand)
+        limit = max(1, int(len(sorted_cand) * config['seed_limit_pct']))
+
+        found = []
+        for _ in range(config['num_attempts']):
+            seed = rng.choice(sorted_cand[:limit])
+            curr_b = list(seed['grp'])
+            curr_w = seed['w']
+            curr_aisles = set()
+
+            for o in curr_b:
+                curr_aisles.update(self.order_cache[o]['aisles'])
+
+            for cand in sorted_cand:
+                if cand['grp'][0] in curr_b:
+                    continue
+                if curr_w + cand['w'] > self.jobprp_instance.picker_capacity:
+                    continue
+                if not self._check_branching_compatible(curr_b, cand['grp']):
+                    continue
+
+                c_aisles = set()
+                for o in cand['grp']:
+                    c_aisles.update(self.order_cache[o]['aisles'])
+
+                accept = False
+                if len(c_aisles - curr_aisles) <= config['aisle_limit']:
+                    accept = True
+
+                elif cand['score'] > (avg_score * 2):
+                    accept = True
+
+                if accept:
+                    curr_b.extend(cand['grp'])
+                    curr_w += cand['w']
+                    curr_aisles.update(c_aisles)
+
+            if curr_b:
+                cost = self._calculate_batch_tour_cost(curr_b)
+                if cost != float('inf'):
+                    rc = cost - sum(order_duals[o] for o in curr_b)
+                    if rc < -1e-5:
+                        if self._filter_columns_based_on_branching_rule(self.branching_rules, [(curr_b, cost)]):
+                            found.append((curr_b, cost))
+                            if len(found) >= config['max_columns']:
+                                break
+
+        found.sort(key=lambda c: (round(c[1], 4), len(c[0]), tuple(sorted(c[0]))))
+
+        if found:
+            logging.debug(f"[CG] Heuristic found {len(found)} columns.")
+        return found
+
+    def _get_unique_groups(self):
+        """
+        Groups orders based on 'Together' branching rules.
+        Transitively merges orders that must be in the same batch.
+        """
         order_groups = {oid: [oid] for oid in self.jobprp_instance.orders}
 
         for rule in self.branching_rules:
@@ -299,116 +403,18 @@ class BranchNode:
                 unique_groups.append(order_groups[oid])
                 seen_leaders.add(leader)
 
-        # 2. Score Groups
-        # Score = Sum(Duals) / Sum(Weights)
-        group_candidates = []
-        for group in unique_groups:
-            g_dual = sum(order_duals.get(oid, 0) for oid in group)
-            g_weight = sum(self.order_cache[oid]['weight'] for oid in group)
+        return unique_groups
 
-            # Only consider groups with positive total dual (potential to be profitable)
-            if g_dual > 1e-5:
-                score = g_dual / g_weight
-                group_candidates.append({'group': group, 'weight': g_weight, 'score': score, 'dual': g_dual})
-
-        # Sort candidates
-        sorted_candidates = sorted(group_candidates, key=lambda x: x['score'], reverse=True)
-
-        # 3. Heuristic Loop
-        num_attempts = 70
-
-        for _ in range(num_attempts):
-            current_batch = []
-            current_weight = 0.0
-            current_aisles = set()
-
-            # A. Seed Selection
-            if not sorted_candidates: break
-            limit = max(1, len(sorted_candidates) // 3) # Top 33%
-            seed = random.choice(sorted_candidates[:limit])
-
-            # Add seed group
-            if seed['weight'] <= self.jobprp_instance.picker_capacity:
-                current_batch.extend(seed['group'])
-                current_weight += seed['weight']
-                for oid in seed['group']:
-                    current_aisles.update(self.order_cache[oid]['aisles'])
-
-            # B. Smart Construction
-            for cand in sorted_candidates:
-                # Skip if any order in group is already in batch (check first order is enough)
-                if cand['group'][0] in current_batch:
-                    continue
-
-                # Check Capacity
-                if current_weight + cand['weight'] > self.jobprp_instance.picker_capacity:
-                    continue
-
-                # Check 'Separate' Branching Rules
-                violated = False
-                for rule in self.branching_rules:
-                    if not rule.orders_together:
-                        # Optimization: Check if rule applies to current batch vs candidate group
-                        o1_in_batch = rule.order1 in current_batch
-                        o2_in_batch = rule.order2 in current_batch
-                        o1_in_cand = rule.order1 in cand['group']
-                        o2_in_cand = rule.order2 in cand['group']
-
-                        if (o1_in_batch and o2_in_cand) or (o2_in_batch and o1_in_cand):
-                            violated = True
-                            break
-                if violated:
-                    continue
-
-                # Aisle Affinity (Relaxed)
-                cand_aisles = set()
-                for oid in cand['group']:
-                    cand_aisles.update(self.order_cache[oid]['aisles'])
-
-                new_aisles_count = len(cand_aisles - current_aisles)
-
-                accept = False
-                # RELAXED LOGIC: Accept up to 2 new aisles, or more if score is very high
-                if new_aisles_count <= 2:
-                    accept = True
-                elif cand['score'] > 2.0: # Example threshold for "Very high value"
-                    accept = True
-
-                if accept:
-                    current_batch.extend(cand['group'])
-                    current_weight += cand['weight']
-                    current_aisles.update(cand_aisles)
-
-            # C. Evaluate
-            if len(current_batch) > 0:
-                # Only run DP if we built something potentially useful
-                tour_cost = self._calculate_batch_tour_cost(current_batch)
-                if tour_cost != float('inf'):
-                    batch_profit = sum(order_duals[oid] for oid in current_batch)
-                    reduced_cost = tour_cost - batch_profit
-
-                    if reduced_cost < -1e-5:
-                        # Validate again to be safe
-                        is_valid = self._filter_columns_based_on_branching_rule(
-                            self.branching_rules, [(current_batch, tour_cost)]
-                        )
-                        if is_valid:
-                            heuristic_columns.append((current_batch, tour_cost))
-                            self.heuristic_success_count += 1
-                            if len(heuristic_columns) >= 5:
-                                break
-
-        if heuristic_columns:
-            logging.info(f"[CG] Heuristic found {len(heuristic_columns)} profitable columns.")
-            return heuristic_columns
-
-        # --- PHASE 2: EXACT FALLBACK (Gurobi) ---
-        # ... (Keep your existing Gurobi code here) ...
-        logging.info(f"[CG] Heuristic failed. Solving exact subproblem for node {self.id} at iteration {iteration}")
-        subproblem = self.subproblem_builder.build(
-            order_duals=order_duals, branching_rules=self.branching_rules, node_id=self.id, iteration=iteration,log_directory=self.log_directory)
-        subproblem.solve()
-        return subproblem.get_profitable_columns(self.subproblem_builder.graph.arcs)
+    def _check_branching_compatible(self, batch, candidate_group):
+        """Checks 'Different Batch' rules."""
+        for rule in self.branching_rules:
+            if not rule.orders_together:
+                o1_in = rule.order1 in batch; o2_in = rule.order2 in batch
+                c1_in = rule.order1 in candidate_group
+                c2_in = rule.order2 in candidate_group
+                if (o1_in and c2_in) or (o2_in and c1_in):
+                    return False
+        return True
 
     def is_feasible(self) -> bool:
         """Checks if the RMP has a valid, optimal solution."""
@@ -433,51 +439,31 @@ class BranchNode:
             A tuple of two order IDs to branch on, or None if no fractional pair exists.
         """
 
-        order_pair_values = defaultdict(float)
+        vals = defaultdict(float)
         for var in self._rmp.getVars():
             if is_non_zero(var.x):
-                column_idx = self.column_index_to_variable.inverse[var]
-                batch, _ = self.column_index[column_idx]
+                c_idx = self.column_index_to_variable.inverse[var]
+                batch, _ = self.column_index[c_idx]
                 for o1, o2 in itertools.combinations(sorted(batch), 2):
-                    order_pair_values[(o1, o2)] += var.x
-        most_fractional_pair = None
-        min_dist_from_half = float('inf')
-        for pair, value in order_pair_values.items():
-            if not is_integer(value):
-                dist = abs(value - 0.5)
-                if dist < min_dist_from_half:
-                    min_dist_from_half = dist
-                    most_fractional_pair = pair
-        return most_fractional_pair
+                    vals[(o1, o2)] += var.x
+        best = None; min_dist = float('inf')
+        for pair, val in sorted(vals.items()):
+            if not is_integer(val):
+                dist = abs(val - 0.5)
+                if dist < min_dist - 1e-6:
+                    min_dist = dist; best = pair
+        return best
 
     def get_batch_columns(self) -> List[TBatchColumn]:
         """Returns all columns currently in the master problem."""
 
         return list(self.column_index.values())
 
-    def report_solution(self):
-        logging.info(f"** Fractional solution to RMP on node {self.id}! **")
-        logging.info(f"Objective value: {self.objective_value():.2f}")
-        for var in self._rmp.getVars():
-            if is_non_zero(var.x):
-                logging.info(f'  {var.VarName}: {var.X:.4f}')
-        logging.info('')
-
     def report_integer_solution(self):
         """Logs a formatted summary of a final, integer solution."""
 
         logging.info(f"** Integral solution found at node {self.id}! **")
         logging.info(f"Total Tour Cost: {self.objective_value():.2f}")
-        final_batches = []
-        for var in self._rmp.getVars():
-            if is_non_zero(var.x):
-                column_idx = self.column_index_to_variable.inverse[var]
-                batch, cost = self.column_index[column_idx]
-                final_batches.append({'batch': sorted(batch), 'cost': cost})
-        logging.info("Final Batches:")
-        for i, batch_info in enumerate(final_batches):
-            logging.info(f"  Batch {i+1}: Orders {batch_info['batch']} (Cost: {batch_info['cost']:.2f})")
-        logging.info('')
 
     def objective_value(self) -> float:
         """Returns the objective value of the RMP, or infinity if not optimal."""
