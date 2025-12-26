@@ -28,7 +28,13 @@ LOG_DIR = os.path.join(PROJECT_ROOT, 'src', 'results', 'logs')
 
 # Updated list to match your uploaded files
 BENCHMARK_CSVS = [
-    "Benchmark2Small.csv"
+    "Benchmark1_Small.csv",
+    "Benchmark2_Small.csv",
+    "Benchmark2_Medium.csv",
+    "Benchmark2_Large.csv",
+    "Benchmark3_Small.csv",
+    "Benchmark3_Medium.csv",
+    "Benchmark3_Large.csv",
 ]
 
 # =============================================================================

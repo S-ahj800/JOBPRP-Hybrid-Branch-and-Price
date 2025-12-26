@@ -1,3 +1,0 @@
-Benchmark_set,Instance Group,Vanilla Time,Adaptive Time,Vanilla Exact Calls,Vanilla Total CG Iterations,Adaptive Total CG Iterations,Adaptive Exact Calls,Adaptive Heur Calls,Heur Success %
-BAHCECI_ONCAN,Pr_20_1_20_Store1,0.4623,0.2187,10.5667,10.5667,15.1333,5.0667,10.0667,65.8753
-BAHCECI_ONCAN,Pr_20_1_20_Store2,0.3222,0.1511,11.0,11.0,12.6667,4.0,8.6667,68.9711
