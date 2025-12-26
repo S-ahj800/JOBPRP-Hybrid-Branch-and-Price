@@ -63,6 +63,7 @@ class BranchNode:
         self.next_column_index = itertools.count(start=0)
 
         self._rmp = gp.Model(f'JOBPRP_RMP_{self.id}')
+        self._rmp.setParam("Threads", 1)
 
         # [PERFORMANCE SETTINGS]
         self._rmp.setParam('Seed', 42)

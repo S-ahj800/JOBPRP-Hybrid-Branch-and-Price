@@ -182,7 +182,7 @@ class JOBPRPBranchAndPrice:
             "Total Time": f"{total_time:.2f}"
         }
 
-        self.final_metrics = metrics   # <-- ADD THIS
+        self.final_metrics = metrics
 
         logging.info("="*60)
         logging.info(f"FINAL RESULTS FOR {self.instance.name}")
