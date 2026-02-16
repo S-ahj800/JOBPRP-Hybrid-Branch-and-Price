@@ -22,7 +22,7 @@ class JOBPRPBranchAndPrice:
         time_limit: The maximum allowed runtime in seconds (default: 3600).
     """
 
-    def __init__(self, jobprp_instance: JOBPRPInstance, log_directory: str, time_limit: float = 3600.0, enable_heuristic: bool = True):
+    def __init__(self, jobprp_instance: JOBPRPInstance, log_directory: str, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0):
         """
         Initializes the solver.
 
@@ -36,6 +36,7 @@ class JOBPRPBranchAndPrice:
         self.log_directory = log_directory
         self.time_limit = time_limit
         self.enable_heuristic = enable_heuristic
+        self.gap_tolerance = gap_tolerance
 
         self.global_stats = {
             'Total_CG_Iter': 0,
@@ -44,6 +45,8 @@ class JOBPRPBranchAndPrice:
         }
 
         self.start_time = time.time()
+
+        self.time_to_best_sol = 0.0
 
         logging.info("Building state-space graph ...")
         self.state_space_graph = StateSpaceBuilder(self.instance).build()
@@ -63,16 +66,36 @@ class JOBPRPBranchAndPrice:
 
         while queue:
             elapsed_time = time.time() - start_time
-            if elapsed_time > self.time_limit:
+            remaining_time = self.time_limit - elapsed_time
+
+            if remaining_time <= 0:
                 logging.warning(f"[B&P] Time limit of {self.time_limit}s reached! Terminating search.")
                 break
 
             queue.sort(key=lambda node: (round(node.objective_value(), 4), -node.id), reverse=True)
             current_node = queue.pop()
 
+            current_lb = current_node.objective_value()
+
+            if self.global_upper_bound < 1e10:
+                if abs(self.global_upper_bound) > 1e-9:
+                    current_gap = (self.global_upper_bound - current_lb) / self.global_upper_bound
+                else:
+                    current_gap = 0.0
+
+                if current_gap <= self.gap_tolerance:
+                    logging.info(f"[B&P] Gap tolerance reached ({current_gap*100:.2f}% <= {self.gap_tolerance*100:.2f}%). Stopping early.")
+                    queue.append(current_node)
+                    break
+
             logging.info(f"Processing Node {current_node.id} (LB: {current_node.objective_value():.2f}, GUB: {self.global_upper_bound:.2f})")
 
-            current_node.solve()
+            current_node.solve(time_limit=remaining_time)
+
+            if time.time() - start_time > self.time_limit:
+                logging.warning(f"[B&P] Timeout during Node {current_node.id} solve. Adding back to queue.")
+                queue.append(current_node)
+                break
 
             # 1. Prune by bound. If the node's LB is worse than the best known solution.
             if current_node.objective_value() >= self.global_upper_bound - 1e-6:
@@ -89,6 +112,7 @@ class JOBPRPBranchAndPrice:
                 if current_node.objective_value() < self.global_upper_bound:
                     self.global_upper_bound = current_node.objective_value()
                     self.best_solution_node = current_node
+                    self.time_to_best_sol = time.time() - start_time
                     logging.info(f"[B&P] New Global Upper Bound: {self.global_upper_bound:.2f}")
                 # Fathom by integrality
                 continue
@@ -101,11 +125,22 @@ class JOBPRPBranchAndPrice:
         self._report_final_metrics(queue)
 
     def _create_root_node(self) -> BranchNode:
-        """Creates the root node of the B&P tree."""
+        """Creates the root node of the B&P tree and sets the initial Global UB."""
 
         logging.debug("Creating root node...")
         finder = InitialSolutionFinder(self.instance)
         initial_columns = finder.find()
+
+        if initial_columns:
+            initial_obj = sum(cost for _, cost in initial_columns)
+
+            # 2. Set it as the Global Upper Bound immediately
+            if initial_obj < self.global_upper_bound:
+                self.global_upper_bound = initial_obj
+                self.time_to_best_sol = 0.0
+                logging.info(f"[Init] Initial UB set from heuristic: {self.global_upper_bound:.2f}")
+        else:
+             logging.warning("[Init] Initial solution finder returned no columns. UB remains Infinity.")
 
         return BranchNode(
             jobprp_instance=self.instance,
@@ -114,7 +149,8 @@ class JOBPRPBranchAndPrice:
             initial_columns=initial_columns,
             log_directory=self.log_directory,
             enable_heuristic=self.enable_heuristic,
-            global_stats=self.global_stats
+            global_stats=self.global_stats,
+            lower_bound=0.0
         )
 
     def _branch(self, node: BranchNode) -> Optional[Tuple[BranchNode, BranchNode]]:
@@ -129,6 +165,8 @@ class JOBPRPBranchAndPrice:
         o1, o2 = orders_to_branch
         logging.info(f"Branching on Node {node.id} on orders ({o1}, {o2}).")
 
+        parent_lb_val = node.objective_value()
+
         # Create two new branching rules: one for 'apart', one for 'together'
         rule_apart = BranchingRule(order1=o1, order2=o2, orders_together=False)
         rule_together = BranchingRule(order1=o1, order2=o2, orders_together=True)
@@ -139,30 +177,44 @@ class JOBPRPBranchAndPrice:
         child_apart = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_apart], initial_columns=parent_columns,
-            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats
+            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         child_together = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_together], initial_columns=parent_columns,
-            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats
+            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         return (child_apart, child_together)
 
     def _report_final_metrics(self, open_queue):
-        ub = self.global_upper_bound
-        if not open_queue: lb = ub
-        else:
-            lb = min(n.objective_value() for n in open_queue)
-            if lb > ub: lb = ub
 
-        is_opt = 1 if (ub < 1e10 and abs(ub - lb) < 1e-4) else 0
-        if is_opt: lb = ub
+        ub = self.global_upper_bound
+
+        if not open_queue:
+            lb = ub
+        else:
+            valid_lbs = [n.objective_value() for n in open_queue]
+            lb = min(valid_lbs) if valid_lbs else 0.0
+
+        if ub < 1e10 and lb > ub:
+                lb = ub
+
+        if ub < 1e10:
+             if abs(ub) > 1e-9:
+                 gap_pct = (abs(ub - lb) / abs(ub)) * 100
+             else:
+                 gap_pct = 0.0
+        else:
+             gap_pct = float('inf')
+
+        if gap_pct < 1e-4:
+            is_opt = 1
+        else:
+            is_opt = 0
 
         total_time = time.time() - self.start_time
-        gap_pct = ((ub - lb) / lb * 100) if (not is_opt and lb > 1e-6) else 0.0
-
         total_iter = self.global_stats['Total_CG_Iter']
         heur_calls = self.global_stats['Heur_Calls']
         exact_calls = self.global_stats['Exact_Calls']
@@ -172,6 +224,7 @@ class JOBPRPBranchAndPrice:
             "Instance": self.instance.name,
             "#Opt": is_opt,
             "Time": f"{total_time:.2f}",
+            "Time to Best": f"{self.time_to_best_sol:.2f}",
             "UB": f"{ub:.2f}" if ub < 1e10 else "Inf",
             "LB": f"{lb:.2f}",
             "Gap %": f"{gap_pct:.2f}",

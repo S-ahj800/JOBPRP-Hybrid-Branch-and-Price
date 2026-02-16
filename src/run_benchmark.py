@@ -5,7 +5,8 @@ import logging
 import argparse
 import tempfile
 import multiprocessing
-import traceback  # <--- NEW: For detailed error reporting
+import traceback
+import time
 
 # =============================================================================
 # 1. CONFIGURATION
@@ -43,25 +44,26 @@ def benchmark_worker(task_args):
     Args: (row_data, full_path, detailed_log_flag, log_dir, project_root_path)
     """
     (row_data, full_path, detailed_log_flag, log_dir, root_path) = task_args
-    
-    # --- CRITICAL FIX: Ensure Imports Work in Parallel Process ---
+
     import sys
     if root_path not in sys.path:
         sys.path.append(root_path)
 
     f_name = row_data.get('filename', 'Unknown')
+    instance_name = os.path.splitext(os.path.basename(full_path))[0]
+
+    print(f"🔵 [START] {instance_name}", flush=True)
 
     try:
         # Import HERE to avoid "ModuleNotFoundError" during spawning
         from src.parser.jobprp_data import JOBPRPInstance
         from src.branch_and_price.jobprp_branch_and_price import JOBPRPBranchAndPrice
-        
+
         # Internal Helper: Run Solver
         def run_solve(path, use_heur, enable_log):
             try:
                 instance = JOBPRPInstance.from_file(path)
-                instance_name = os.path.splitext(os.path.basename(path))[0]
-                
+
                 # Log Setup
                 temp_dir_obj = None
                 if enable_log:
@@ -75,20 +77,21 @@ def benchmark_worker(task_args):
                     jobprp_instance=instance,
                     log_directory=inst_log_dir,
                     time_limit=3600.0,
-                    enable_heuristic=use_heur
+                    enable_heuristic=use_heur,
+                    gap_tolerance=0.01
                 )
-                
+
                 # --- CHECK GUROBI THREADS ---
                 # Safety check: If user forgot to set Threads=1, we try to set it here if accessible
                 if hasattr(solver, 'model') and solver.model:
                      try: solver.model.setParam("Threads", 1)
                      except: pass
-                
+
                 solver.solve()
-                
+
                 # Retrieve metrics safely
                 res = getattr(solver, 'final_metrics', {})
-                
+
                 if temp_dir_obj: temp_dir_obj.cleanup()
                 return res
             except Exception as inner_e:
@@ -107,32 +110,54 @@ def benchmark_worker(task_args):
             try: return float(m.get(k, d))
             except: return d
 
-        a_exact = get_val(a_metrics, 'Exact Calls')
-        a_heur = get_val(a_metrics, 'Heur Calls')
-        a_total = a_exact + a_heur
-        
         v_exact = get_val(v_metrics, 'Exact Calls')
         v_heur = get_val(v_metrics, 'Heur Calls')
         v_total = v_exact + v_heur
+        v_opt = v_metrics.get('#Opt', 0)
+        v_gap = v_metrics.get('Gap %', '-')
+
+        # Adaptive Stats
+        a_exact = get_val(a_metrics, 'Exact Calls')
+        a_heur = get_val(a_metrics, 'Heur Calls')
+        a_total = a_exact + a_heur
+        a_opt = a_metrics.get('#Opt', 0)
+        a_gap = a_metrics.get('Gap %', '-')
 
         heur_pct = round((a_heur / a_total) * 100, 2) if a_total > 0 else 0.0
 
-        return {
+        result_dict = {
             'Benchmark_set': row_data.get('benchmark set'),
             'Instance Group': os.path.basename(full_path).split('-')[0],
+            'Instance': instance_name,
+
+            # --- VANILLA COLUMNS ---
             'Vanilla Time': get_val(v_metrics, 'Total Time'),
+            'Vanilla #Opt': v_opt,
+            'Vanilla UB': v_metrics.get('UB', '-'),
+            'Vanilla LB': v_metrics.get('LB', '-'),
+            'Vanilla Gap': v_gap,
+            'Vanilla CG Iter': v_total,
+
+            # --- ADAPTIVE COLUMNS ---
             'Adaptive Time': get_val(a_metrics, 'Total Time'),
-            'Vanilla Exact Calls': v_exact,
-            'Vanilla Total CG Iterations': v_total,
-            'Adaptive Total CG Iterations': a_total,
-            'Adaptive Exact Calls': a_exact,
+            'Adaptive #Opt': a_opt,
+            'Adaptive UB': a_metrics.get('UB', '-'),
+            'Adaptive LB': a_metrics.get('LB', '-'),
+            'Adaptive Gap': a_gap,
+            'Adaptive CG Iter': a_total,
             'Adaptive Heur Calls': a_heur,
-            'Heur Success %': heur_pct, 
-            '#Opt': a_metrics.get('#Opt', 0),
-            'UB': a_metrics.get('UB', '-'),
-            'LB': a_metrics.get('LB', '-'),
-            'Gap': a_metrics.get('Gap %', '-')
+            'Heur Success %': heur_pct,
+
+            'Adaptive Time to Best': a_metrics.get('Time to Best', '-')
         }
+
+        v_status = "Opt" if v_opt else f"TL({v_gap}%)"
+        a_status = "Opt" if a_opt else f"TL({a_gap}%)"
+
+        print(f"🟢 [DONE]  {instance_name} | V: {v_status} | A: {a_status}", flush=True)
+
+        return result_dict
+
     except Exception as e:
         print(f"\n❌ FATAL WORKER ERROR on file: {f_name}")
         print(f"   path: {full_path}")
@@ -143,25 +168,36 @@ def benchmark_worker(task_args):
 # 3. HELPER: Path Finding
 # =============================================================================
 def get_real_path_helper(benchmark_set, csv_filename, data_root):
-    """Simple path resolver."""
+    """Path resolver with DEBUG prints."""
     clean_name = os.path.basename(csv_filename.replace('\\', '/'))
-    
+
     # Map Benchmark Set to Folder
     folder_map = {
         'BAHCECI_ONCAN': 'BahceciOencan',
         'HENN': 'HennWaescher',
         'MUTER_ONCAN': 'Muter'
     }
+    
+    # DEBUG 1: Check inputs
+    # print(f"   [DEBUG] Checking Set: '{benchmark_set}' | File: '{clean_name}'")
+
     target_folder = folder_map.get(benchmark_set)
-    if not target_folder: return None
+    if not target_folder: 
+        print(f"   ❌ [DEBUG] Unrecognized benchmark set: '{benchmark_set}' (Check whitespace/spelling?)")
+        return None
 
     # Search
     search_path = os.path.join(data_root, target_folder)
-    if not os.path.exists(search_path): return None
-    
+    if not os.path.exists(search_path): 
+        print(f"   ❌ [DEBUG] Folder not found on disk: {search_path}")
+        return None
+
+    # DEBUG 2: Search loop
     for root, _, files in os.walk(search_path):
         if clean_name in files:
             return os.path.join(root, clean_name)
+    
+    print(f"   ❌ [DEBUG] File '{clean_name}' not found in folder: {search_path}")
     return None
 
 def find_benchmark_csv(filename, project_root):
@@ -185,19 +221,21 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
-    
+    output_path = os.path.join(RESULTS_DIR, "Final_Benchmark_Parallel_Report.csv")
+
     # 1. Prepare Tasks
     all_tasks = []
-    
+
     print(f"🔎 Scanning for data in: {DATA_DIR}")
     for csv_file in BENCHMARK_CSVS:
         full_csv_path = find_benchmark_csv(csv_file, PROJECT_ROOT)
-        if not full_csv_path: 
+        if not full_csv_path:
             print(f"   ⚠️ Could not find benchmark index: {csv_file}")
             continue
-        
+
         try:
             df = pd.read_csv(full_csv_path)
+            print(f"   ✅ Loaded CSV with {len(df)} rows. Columns: {df.columns.tolist()}")
             for _, row in df.iterrows():
                 full_path = get_real_path_helper(row['benchmark set'], row['filename'], DATA_DIR)
                 if full_path:
@@ -208,23 +246,26 @@ if __name__ == "__main__":
 
     if not all_tasks:
         print("\n❌ CRITICAL: No instances found to solve!")
-        print("   Please check that 'src/data' exists and contains your folders (BahceciOencan, etc.)")
         sys.exit(1)
 
     print(f"🚀 Launching {len(all_tasks)} tasks on {args.workers} cores...")
+    print(f"💾 Results will be saved immediately to: {output_path}")
+    print("-" * 60)
+
+    if all_tasks:
+        file_initialized = False
 
     # 2. Run Parallel
     with multiprocessing.Pool(processes=args.workers) as pool:
-        results = pool.map(benchmark_worker, all_tasks)
+        for result in pool.imap_unordered(benchmark_worker, all_tasks):
+            if result is not None:
+                df_res = pd.DataFrame([result])
 
-    # 3. Save Results
-    valid_results = [r for r in results if r is not None]
-    
-    if valid_results:
-        final_df = pd.DataFrame(valid_results)
-        output_path = os.path.join(RESULTS_DIR, "Final_Benchmark_Parallel_Report.csv")
-        final_df.to_csv(output_path, index=False)
-        print(f"\n✅ SUCCESS! Saved {len(valid_results)} records to:")
-        print(f"   {output_path}")
-    else:
-        print("\n❌ FAILURE: All workers failed. Check the error messages above.")
+                # Check if we need to write header (file doesn't exist or first write)
+                header = not os.path.exists(output_path)
+
+                # Append to CSV immediately
+                df_res.to_csv(output_path, mode='a', header=header, index=False)
+
+    print("-" * 60)
+    print(f"\n✅ ALL FINISHED! Full results in: {output_path}")

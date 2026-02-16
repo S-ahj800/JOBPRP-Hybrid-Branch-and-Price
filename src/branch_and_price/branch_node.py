@@ -6,6 +6,7 @@ from collections import defaultdict
 from typing import List, Dict, Tuple, Optional
 from contextlib import redirect_stdout
 import io
+import time
 
 import gurobipy as gp
 from bidict import bidict
@@ -42,11 +43,13 @@ class BranchNode:
                  log_directory: str,
                  initial_columns: List[TBatchColumn],
                  enable_heuristic: bool = True,
-                 global_stats: Dict = None):
+                 global_stats: Dict = None,
+                 lower_bound=0.0):
 
         self.id = next(BranchNode.next_node_id)
         self.jobprp_instance = jobprp_instance
         self.branching_rules = branching_rules
+        self.lower_bound = lower_bound
         self.log_directory = log_directory
 
         # --- CONFIGURATION ---
@@ -221,7 +224,7 @@ class BranchNode:
         self._rmp.update()
         self.column_index_to_variable[internal_column_idx] = rmp_var
 
-    def solve(self):
+    def solve(self, time_limit: float = None):
         """
         Solves the LP relaxation of the Restricted Master Problem (RMP).
         """
@@ -230,7 +233,20 @@ class BranchNode:
         col_gen_itr = itertools.count(start=1)
         gurobi_logger = logging.getLogger('Gurobi_RMP')
 
+        node_start_time = time.time()
+
         while True:
+            # [FIX 5] Check time limit inside the loop
+            if time_limit is not None:
+                elapsed_in_node = time.time() - node_start_time
+                time_left_for_node = time_limit - elapsed_in_node
+
+                if time_left_for_node <= 0:
+                    logging.warning(f"[Node {self.id}] Time limit exceeded during CG loop.")
+                    break
+
+                self._rmp.setParam('TimeLimit', time_left_for_node)
+
             iteration = next(col_gen_itr)
             self._rmp.update()
 
@@ -241,6 +257,8 @@ class BranchNode:
             if not has_solution(self._rmp.status):
                 logging.debug(f"[Node {self.id}] RMP infeasible or unbounded.")
                 break
+
+            
 
             try:
                 order_duals = {oid: c.Pi for oid, c in self.order_partitioning_constraints.items()}
@@ -469,4 +487,6 @@ class BranchNode:
     def objective_value(self) -> float:
         """Returns the objective value of the RMP, or infinity if not optimal."""
 
-        return self._rmp.ObjVal if has_solution(self._rmp.status) else float('inf')
+        if has_solution(self._rmp.status):
+            return self._rmp.ObjVal
+        return self.lower_bound

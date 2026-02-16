@@ -1,4 +1,5 @@
 ﻿problem type,benchmark set,filename,number of orders,capacity,random seed,policy,opt?,UB,LB,time [s]
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C30\5l-30-30-0.txt,30,30,0,optimal,TRUE,6.05,6050,1427.69
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C30\5l-30-30-1.txt,30,30,1,optimal,TRUE,6.122,6122,3600
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C30\5l-30-30-2.txt,30,30,2,optimal,TRUE,6.712,6712,3600
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C30\5l-30-30-3.txt,30,30,3,optimal,TRUE,7.283,7283,3600
@@ -126,7 +127,6 @@ OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C75\8l-30-75-3
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C75\8l-30-75-1.txt,30,75,1,optimal,FALSE,2.579,2513.59,1976.53
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C60\11l-40-60-7.txt,40,60,7,optimal,FALSE,5.473,5189.03,1569.47
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C60\31s-40-60-7.txt,40,60,7,optimal,FALSE,4.84,4187.67,1447.74
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C30\5l-30-30-0.txt,30,30,0,optimal,TRUE,6.05,6050,1427.69
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C75\8l-30-75-2.txt,30,75,2,optimal,FALSE,3.055,3015.73,1411.54
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C60\11l-40-60-8.txt,40,60,8,optimal,FALSE,4.802,4472.97,978.79
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C45\10l-40-45-6.txt,40,45,6,optimal,FALSE,6.586,6582.69,650.056
@@ -142,20 +142,19 @@ OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C60\31s-40-60-9.tx
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O30_C60\27s-30-60-8.txt,30,60,8,optimal,FALSE,3.916,3754.91,266.396
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O30_C45\26s-30-45-6.txt,30,45,6,optimal,FALSE,5.23,5223.33,263.963
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O30_C45\26s-30-45-5.txt,30,45,5,optimal,FALSE,4.671,4650.33,254.907
-OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C30\29s-40-30-1.txt,40,30,1,optimal,TRUE,7.956,7956,183.236
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-1.txt,40,30,1,optimal,TRUE,9.03,9030,171.036
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C45\6l-30-45-8.txt,30,45,8,optimal,TRUE,4.884,4884,170.246
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O30_C30\25s-30-30-2.txt,30,30,2,optimal,TRUE,9.492,9492,160.63
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-2.txt,40,30,2,optimal,TRUE,8.152,8152,139.98
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O30_C45\26s-30-45-4.txt,30,45,4,optimal,FALSE,5.198,5183.67,110.495
-OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C30\29s-40-30-3.txt,40,30,3,optimal,TRUE,11.307,11307,103.392
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C60\7l-30-60-7.txt,30,60,7,optimal,FALSE,3.884,3803,102.472
 OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C30\29s-40-30-0.txt,40,30,0,optimal,TRUE,9.246,9246,86.816
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C45\10l-40-45-5.txt,40,45,5,optimal,FALSE,5.709,5682.02,68.568
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-0.txt,40,30,0,optimal,TRUE,9.69,9690,51.262
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C60\7l-30-60-9.txt,30,60,9,optimal,FALSE,3.509,3507,38.715
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C45\6l-30-45-9.txt,30,45,9,optimal,TRUE,5.379,5379,25.41
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C45\6l-30-45-6.txt,30,45,6,optimal,TRUE,4.894,4894,24.691
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C45\6l-30-45-5.txt,30,45,5,optimal,FALSE,5.185,5156.62,22.459
+OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C30\29s-40-30-1.txt,40,30,1,optimal,TRUE,7.956,7956,183.236
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-1.txt,40,30,1,optimal,TRUE,9.03,9030,171.036
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-2.txt,40,30,2,optimal,TRUE,8.152,8152,139.98
+OrderBatching,HENN,Instances_uniform\Instances_S-Shape\SS_O40_C30\29s-40-30-3.txt,40,30,3,optimal,TRUE,11.307,11307,103.392
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C60\7l-30-60-7.txt,30,60,7,optimal,FALSE,3.884,3803,102.472
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C45\10l-40-45-5.txt,40,45,5,optimal,FALSE,5.709,5682.02,68.568
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O40_C30\9l-40-30-0.txt,40,30,0,optimal,TRUE,9.69,9690,51.262
+OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C60\7l-30-60-9.txt,30,60,9,optimal,FALSE,3.509,3507,38.715
 OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C60\7l-30-60-8.txt,30,60,8,optimal,FALSE,3.898,3806.67,14.732
-OrderBatching,HENN,Instances_uniform\Instances_Largest_Gap\LG_O30_C45\6l-30-45-4.txt,30,45,4,optimal,FALSE,5.177,5128.35,12.692
