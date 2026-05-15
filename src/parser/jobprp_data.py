@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass, field
-from typing import List, Dict, TextIO
+from typing import List, Dict, TextIO, Any
 import logging
 
 # =============================================================================
@@ -121,43 +121,6 @@ class JOBPRPInstance:
         with open(filepath, 'r', encoding='latin-1') as f:
             return _JOBPRPParser(f).parse()
 
-    # def report_parsed_data(self):
-    #     """Prints a comprehensive summary of the loaded instance data."""
-    #     print(f"--- JOBPRP Instance: {self.name} ---")
-    #     print(f"Picker Capacity: {self.picker_capacity}")
-
-    #     print("\n--- Warehouse Layout ---")
-    #     print(f"  Number of Aisles: {self.layout.num_aisles}")
-    #     print(f"  Number of Cells per Aisle: {self.layout.num_cells_per_aisle}")
-    #     print(f"  Depot: Aisle {self.layout.depot_aisle}, Location: {self.layout.depot_location}")
-    #     print(f"  Distances:")
-    #     print(f"    Aisle to Aisle: {self.layout.distance_aisle_to_aisle}")
-    #     print(f"    Cell to Cell: {self.layout.distance_cell_to_cell}")
-    #     print(f"    Top to Cell: {self.layout.distance_top_to_cell}")
-    #     print(f"    Bottom to Cell: {self.layout.distance_bottom_to_cell}")
-    #     print(f"    Top/Bottom to Depot: {self.layout.distance_top_or_bottom_to_depot}")
-
-    #     print("\n--- Articles (SKUs) ---")
-    #     print(f"  Total Unique Articles: {len(self.articles)}")
-    #     for art_id, article in sorted(self.articles.items()):
-    #         print(f"  ID {article.id}: Weight {article.weight}")
-
-    #     print("\n--- SKU Locations ---")
-    #     print(f"  Total SKU Locations: {len(self.sku_locations)}")
-    #     for sku_loc in self.sku_locations:
-    #         print(f"  SKU {sku_loc.article_id} at Aisle {sku_loc.aisle}, Cell {sku_loc.cell}: "
-    #               f"Quantity {sku_loc.quantity}, Side {sku_loc.side}")
-
-    #     print("\n--- Orders ---")
-    #     print(f"  Total Orders: {len(self.orders)}")
-    #     for ord_id, order in sorted(self.orders.items()):
-    #         print(f"  Order ID {order.id}: (Total Weight: {order.total_weight})")
-    #         for line in order.order_lines:
-    #             print(f"    Article {line.article.id}, Quantity {line.quantity}")
-    #     print("\n-------------------------")
-
-
-
 # =============================================================================
 # --- Parser Implementation ---
 # =============================================================================
@@ -171,7 +134,7 @@ class _JOBPRPParser:
 
     def __init__(self, file_stream: TextIO):
         self._lines = iter([line.strip() for line in file_stream.readlines()])
-        self._data: Dict[str, any] = {}
+        self._data: Dict[str, Any] = {}
         self._articles: Dict[TArticleID, Article] = {}
         self._sku_locations: List[SKULocation] = []
         self._orders: Dict[TOrderID, Order] = {}

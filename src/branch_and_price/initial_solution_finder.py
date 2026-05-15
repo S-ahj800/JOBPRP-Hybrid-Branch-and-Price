@@ -4,7 +4,7 @@ import math
 
 from src.parser.jobprp_data import JOBPRPInstance, Order
 from src.branch_and_price.types import TBatchColumn
-from src.utils.R_R_DP_Solver import R_and_R_Solver, EquivalenceClass
+from src.utils.RatliffRosenthalSolver import RatliffRosenthalSolver, EquivalenceClass
 
 class InitialSolutionFinder:
     """

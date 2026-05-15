@@ -65,7 +65,7 @@ BASE_CASE_MAPPING = {
     AisleConfig.vi: EquivalenceClass.ZZ0C
 }
 
-class R_and_R_Solver:
+class RatliffRosenthalSolver:
     """
     An implementation of the Ratliff & Rosenthal Dynamic Programming algorithm
     for solving the Single Picker Routing Problem (SPRP) in a rectangular warehouse.
@@ -252,7 +252,8 @@ class R_and_R_Solver:
         df.index.name = "Equivalence Class"
 
         for stage_key in stages:
-            if stage_key not in self.dp_table: continue
+            if stage_key not in self.dp_table:
+                continue
             for cls_enum in CLASSES:
                 info = self.dp_table[stage_key].get(cls_enum, {'cost': math.inf})
                 if info['cost'] != math.inf:

@@ -19,7 +19,7 @@ from src.utils import has_solution, is_integer, is_non_zero
 from src.branch_and_price.types import TBatchColumn
 from src.utils.logging_utils import StreamToLogger
 
-from src.utils.R_R_DP_Solver import R_and_R_Solver, EquivalenceClass
+from src.utils.RatliffRosenthalSolver import RatliffRosenthalSolver, EquivalenceClass
 
 class BranchNode:
     """

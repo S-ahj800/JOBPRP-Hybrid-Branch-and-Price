@@ -188,7 +188,7 @@ class JOBPRPBranchAndPrice:
 
         return (child_apart, child_together)
 
-    def _report_final_metrics(self, open_queue):
+    def _report_final_metrics(self, open_queue: List[BranchNode]):
 
         ub = self.global_upper_bound
 
