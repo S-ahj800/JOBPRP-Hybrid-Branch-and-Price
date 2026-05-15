@@ -11,33 +11,26 @@ from src.parser.jobprp_data import JOBPRPInstance
 from src.branch_and_price.jobprp_branch_and_price import JOBPRPBranchAndPrice
 
 def add_file_handler_to_logger(instance_path: str) -> str:
-    """Creates and adds a detailed file handler to the root logger."""
-    # --- Create a directory for the logs based on the instance filename ---
+    """Sets up a detailed file handler for the root logger."""
     instance_name = os.path.splitext(os.path.basename(instance_path))[0]
     log_directory = f"{instance_name}_run_logs"
     os.makedirs(log_directory, exist_ok=True)
     log_filename = os.path.join(log_directory, f"{instance_name}.log")
 
-    # --- Get the root logger and set its level to the lowest (DEBUG) ---
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
-    # --- Create and configure the File Handler (DEBUG level) ---
-    file_handler = logging.FileHandler(log_filename, mode='w') # 'w' to overwrite
+    file_handler = logging.FileHandler(log_filename, mode='w')
     file_handler.setLevel(logging.DEBUG)
     file_formatter = logging.Formatter('%(asctime)s - %(levelname)-8s - [%(name)s:%(funcName)s:%(lineno)d] - %(message)s')
     file_handler.setFormatter(file_formatter)
 
-    # --- Add the new handler to the root logger ---
     logger.addHandler(file_handler)
-
     logging.info(f"Detailed DEBUG log will be saved to: {log_filename}")
+
     return log_directory
 
 def main():
-    """
-    Main execution function for the JOBPRP Branch and Price solver.
-    """
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)-8s - %(message)s',
@@ -45,29 +38,22 @@ def main():
         stream=sys.stdout
     )
 
-    parser = argparse.ArgumentParser(
-        description="Solves the Joint Order Batching and Picker Routing Problem (JOBPRP) using Branch and Price."
-    )
-    parser.add_argument('instance_path', type=str, help='Path to the JOBPRP instance file.')
-    parser.add_argument('--detailed-log', action='store_true', help='Enable detailed logging saved to the instance directory.')
+    parser = argparse.ArgumentParser(description="JOBPRP Branch and Price Solver")
+    parser.add_argument('instance_path', type=str, help='Path to the instance file.')
+    parser.add_argument('--detailed-log', action='store_true', help='Enable detailed instance logging.')
     args = parser.parse_args()
 
-    # --- 3. Run the Solver ---
     try:
         instance_name_base = os.path.splitext(os.path.basename(args.instance_path))[0]
-        
-        # [MODIFIED LOGIC START]
+
         if args.detailed_log:
-            # Save in the same directory as the instance file
             instance_dir = os.path.dirname(os.path.abspath(args.instance_path))
             log_directory = os.path.join(instance_dir, f"{instance_name_base}_run_logs")
         else:
-            # Default: Save in current working directory
             log_directory = f"{instance_name_base}_run_logs"
 
         os.makedirs(log_directory, exist_ok=True)
 
-        # Only attach the debug file handler if the argument was passed
         if args.detailed_log:
             log_filename = os.path.join(log_directory, f"{instance_name_base}.log")
 
@@ -80,13 +66,11 @@ def main():
             root_logger.addHandler(file_handler)
             root_logger.setLevel(logging.DEBUG)
 
-            # Keep console output clean (INFO only) while file gets DEBUG
             for handler in root_logger.handlers:
                 if isinstance(handler, logging.StreamHandler):
                     handler.setLevel(logging.INFO)
 
             logging.info(f"Detailed DEBUG log will be saved to: {log_filename}")
-        # [MODIFIED LOGIC END]
 
     except Exception as e:
         logging.error(f"Failed to set up file logging: {e}")

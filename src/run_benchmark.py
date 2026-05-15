@@ -8,11 +8,8 @@ import multiprocessing
 import traceback
 import time
 
-# =============================================================================
-# 1. CONFIGURATION
-# =============================================================================
+# Configuration paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Attempt to find the project root (one level up if we are in 'src')
 if os.path.basename(SCRIPT_DIR) == 'src':
     PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 else:
@@ -35,37 +32,29 @@ BENCHMARK_CSVS = [
     "Benchmark3_Large.csv",
 ]
 
-# =============================================================================
-# 2. WORKER FUNCTION
-# =============================================================================
 def benchmark_worker(task_args):
     """
-    Worker function.
-    Args: (row_data, full_path, detailed_log_flag, log_dir, project_root_path)
+    Executes the solver for a single benchmark instance.
     """
-    (row_data, full_path, detailed_log_flag, log_dir, root_path) = task_args
+    row_data, full_path, detailed_log_flag, log_dir, root_path = task_args
 
-    import sys
     if root_path not in sys.path:
         sys.path.append(root_path)
 
     f_name = row_data.get('filename', 'Unknown')
     instance_name = os.path.splitext(os.path.basename(full_path))[0]
 
-    print(f"🔵 [START] {instance_name}", flush=True)
+    print(f"[*] Starting instance: {instance_name}", flush=True)
 
     try:
-        # Import HERE to avoid "ModuleNotFoundError" during spawning
         from src.parser.jobprp_data import JOBPRPInstance
         from src.branch_and_price.jobprp_branch_and_price import JOBPRPBranchAndPrice
 
-        # Internal Helper: Run Solver
         def run_solve(path, use_heur, enable_log):
             try:
                 instance = JOBPRPInstance.from_file(path)
-
-                # Log Setup
                 temp_dir_obj = None
+
                 if enable_log:
                     inst_log_dir = os.path.join(log_dir, f"{instance_name}_logs")
                     os.makedirs(inst_log_dir, exist_ok=True)
@@ -81,34 +70,30 @@ def benchmark_worker(task_args):
                     gap_tolerance=0.01
                 )
 
-                # --- CHECK GUROBI THREADS ---
-                # Safety check: If user forgot to set Threads=1, we try to set it here if accessible
                 if hasattr(solver, 'model') and solver.model:
                      try: solver.model.setParam("Threads", 1)
                      except: pass
 
                 solver.solve()
-
-                # Retrieve metrics safely
                 res = getattr(solver, 'final_metrics', {})
 
-                if temp_dir_obj: temp_dir_obj.cleanup()
+                if temp_dir_obj:
+                    temp_dir_obj.cleanup()
+
                 return res
             except Exception as inner_e:
                 print(f"    ⚠️ Error in solver execution for {path}: {inner_e}")
                 traceback.print_exc()
                 return {}
 
-        # --- EXECUTE RUNS ---
-        # Run 1: Vanilla
         v_metrics = run_solve(full_path, False, detailed_log_flag)
-        # Run 2: Adaptive
         a_metrics = run_solve(full_path, True, detailed_log_flag)
 
-        # Extract Metrics
         def get_val(m, k, d=0.0):
-            try: return float(m.get(k, d))
-            except: return d
+            try:
+                return float(m.get(k, d))
+            except:
+                return d
 
         v_exact = get_val(v_metrics, 'Exact Calls')
         v_heur = get_val(v_metrics, 'Heur Calls')
@@ -130,7 +115,6 @@ def benchmark_worker(task_args):
             'Instance Group': os.path.basename(full_path).split('-')[0],
             'Instance': instance_name,
 
-            # --- VANILLA COLUMNS ---
             'Vanilla Time': get_val(v_metrics, 'Total Time'),
             'Vanilla #Opt': v_opt,
             'Vanilla UB': v_metrics.get('UB', '-'),
@@ -138,7 +122,6 @@ def benchmark_worker(task_args):
             'Vanilla Gap': v_gap,
             'Vanilla CG Iter': v_total,
 
-            # --- ADAPTIVE COLUMNS ---
             'Adaptive Time': get_val(a_metrics, 'Total Time'),
             'Adaptive #Opt': a_opt,
             'Adaptive UB': a_metrics.get('UB', '-'),
@@ -147,57 +130,46 @@ def benchmark_worker(task_args):
             'Adaptive CG Iter': a_total,
             'Adaptive Heur Calls': a_heur,
             'Heur Success %': heur_pct,
-
-            'Adaptive Time to Best': a_metrics.get('Time to Best', '-')
         }
 
         v_status = "Opt" if v_opt else f"TL({v_gap}%)"
         a_status = "Opt" if a_opt else f"TL({a_gap}%)"
 
-        print(f"🟢 [DONE]  {instance_name} | V: {v_status} | A: {a_status}", flush=True)
+        print(f"[+] Finished {instance_name} | V: {v_status} | A: {a_status}", flush=True)
 
         return result_dict
 
     except Exception as e:
-        print(f"\n❌ FATAL WORKER ERROR on file: {f_name}")
+        print(f"\n[!] FATAL ERROR on file: {f_name}\nPath: {full_path}")
         print(f"   path: {full_path}")
-        traceback.print_exc() # Print the full error stack
+        traceback.print_exc()
         return None
 
-# =============================================================================
-# 3. HELPER: Path Finding
-# =============================================================================
 def get_real_path_helper(benchmark_set, csv_filename, data_root):
-    """Path resolver with DEBUG prints."""
+    """Resolves the physical file path for a given benchmark instance."""
     clean_name = os.path.basename(csv_filename.replace('\\', '/'))
 
-    # Map Benchmark Set to Folder
     folder_map = {
         'BAHCECI_ONCAN': 'BahceciOencan',
         'HENN': 'HennWaescher',
         'MUTER_ONCAN': 'Muter'
     }
-    
-    # DEBUG 1: Check inputs
-    # print(f"   [DEBUG] Checking Set: '{benchmark_set}' | File: '{clean_name}'")
 
     target_folder = folder_map.get(benchmark_set)
-    if not target_folder: 
+    if not target_folder:
         print(f"   ❌ [DEBUG] Unrecognized benchmark set: '{benchmark_set}' (Check whitespace/spelling?)")
         return None
 
-    # Search
     search_path = os.path.join(data_root, target_folder)
-    if not os.path.exists(search_path): 
+    if not os.path.exists(search_path):
         print(f"   ❌ [DEBUG] Folder not found on disk: {search_path}")
         return None
 
-    # DEBUG 2: Search loop
     for root, _, files in os.walk(search_path):
         if clean_name in files:
             return os.path.join(root, clean_name)
-    
-    print(f"   ❌ [DEBUG] File '{clean_name}' not found in folder: {search_path}")
+
+    print(f"  [?] File '{clean_name}' not found in: {search_path}")
     return None
 
 def find_benchmark_csv(filename, project_root):
@@ -211,9 +183,6 @@ def find_benchmark_csv(filename, project_root):
         if os.path.exists(cand): return cand
     return None
 
-# =============================================================================
-# 4. MAIN RUNNER
-# =============================================================================
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--detailed-log', action='store_true')
@@ -223,49 +192,42 @@ if __name__ == "__main__":
     os.makedirs(RESULTS_DIR, exist_ok=True)
     output_path = os.path.join(RESULTS_DIR, "Final_Benchmark_Parallel_Report.csv")
 
-    # 1. Prepare Tasks
     all_tasks = []
 
-    print(f"🔎 Scanning for data in: {DATA_DIR}")
+    print(f"Scanning for data in: {DATA_DIR}")
     for csv_file in BENCHMARK_CSVS:
         full_csv_path = find_benchmark_csv(csv_file, PROJECT_ROOT)
         if not full_csv_path:
-            print(f"   ⚠️ Could not find benchmark index: {csv_file}")
+            print(f" [-] Missing benchmark index: {csv_file}")
             continue
 
         try:
             df = pd.read_csv(full_csv_path)
-            print(f"   ✅ Loaded CSV with {len(df)} rows. Columns: {df.columns.tolist()}")
+            print(f"   [+] Loaded CSV with {len(df)} rows.")
+
             for _, row in df.iterrows():
                 full_path = get_real_path_helper(row['benchmark set'], row['filename'], DATA_DIR)
                 if full_path:
-                    # Pass PROJECT_ROOT to worker
                     all_tasks.append((row.to_dict(), full_path, args.detailed_log, LOG_DIR, PROJECT_ROOT))
         except Exception as e:
-            print(f"   ❌ Error reading {csv_file}: {e}")
+            print(f"   [!] Error reading {csv_file}: {e}")
 
     if not all_tasks:
-        print("\n❌ CRITICAL: No instances found to solve!")
+        print("\n[!] No instances found to solve. Exiting.")
         sys.exit(1)
 
-    print(f"🚀 Launching {len(all_tasks)} tasks on {args.workers} cores...")
-    print(f"💾 Results will be saved immediately to: {output_path}")
+    print(f"Launching {len(all_tasks)} tasks on {args.workers} cores...")
+    print(f"Results will be saved immediately to: {output_path}")
     print("-" * 60)
 
-    if all_tasks:
-        file_initialized = False
-
-    # 2. Run Parallel
     with multiprocessing.Pool(processes=args.workers) as pool:
         for result in pool.imap_unordered(benchmark_worker, all_tasks):
             if result is not None:
                 df_res = pd.DataFrame([result])
 
-                # Check if we need to write header (file doesn't exist or first write)
                 header = not os.path.exists(output_path)
 
-                # Append to CSV immediately
                 df_res.to_csv(output_path, mode='a', header=header, index=False)
 
     print("-" * 60)
-    print(f"\n✅ ALL FINISHED! Full results in: {output_path}")
+    print(f"\n[+] ALL FINISHED! Full results in: {output_path}")

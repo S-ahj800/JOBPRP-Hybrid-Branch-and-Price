@@ -8,12 +8,8 @@ from src.utils.RatliffRosenthalSolver import RatliffRosenthalSolver, Equivalence
 
 class InitialSolutionFinder:
     """
-    Generates an initial set of columns for the master problem.
-
-    This implementation creates "singleton" columns, where each column represents
-    a batch containing only a single order. The cost of each column is the
-    optimal tour cost for that individual order, found by solving a pure
-    Single Picker Routing Problem (SPRP).
+    Generates an initial set of columns (singleton batches) using the DP solver.
+    Each initial column represents a batch containing exactly one order..
     """
 
     def __init__(self, jobprp_instance: JOBPRPInstance):
@@ -22,15 +18,9 @@ class InitialSolutionFinder:
         self.layout = self.full_instance.layout
 
     def find(self) -> List[TBatchColumn]:
-        """
-        Generates a list of singleton batch columns by solving an SPRP for each order.
-
-        Returns:
-            A list of TBatchColumn tuples, one for each order in the instance.
-        """
-
         logging.debug("Generating initial columns (one per order).")
         initial_columns: List[TBatchColumn] = []
+
         for order in self.full_instance.orders.values():
             logging.debug(f"Finding initial tour for Order {order.id}.")
             tour_cost = self._solve_sprp_for_order(order)
@@ -45,19 +35,8 @@ class InitialSolutionFinder:
         return initial_columns
 
     def _solve_sprp_for_order(self, order: Order) -> Optional[float]:
-        """
-        Solves the pure SPRP for a single order using the R&R DP solver.
-
-        Args:
-            order: The order for which to calculate the optimal tour cost.
-
-        Returns:
-            The optimal tour cost as a float, or None if no valid tour exists.
-        """
-
         required_skus = {line.article.id for line in order.order_lines}
 
-        # Create a temporary, single-order instance for the DP solver.
         temp_instance = JOBPRPInstance(
             name=f"temp_instance_for_order_{order.id}",
             picker_capacity=self.full_instance.picker_capacity,
@@ -67,7 +46,7 @@ class InitialSolutionFinder:
             orders={order.id: order}
         )
 
-        solver = R_and_R_Solver(temp_instance)
+        solver = RatliffRosenthalSolver(temp_instance)
         dp_table = solver.solve()
 
         # Extract final cost from the last stage of the DP table

@@ -3,19 +3,11 @@ from dataclasses import dataclass, field
 from typing import List, Dict, TextIO, Any
 import logging
 
-# =============================================================================
-# --- Type Aliases ---
-# =============================================================================
-# For improved readability and type hinting, consistent with academic literature.
 TAisleID = int
 TCellID = int
 TArticleID = int
 TOrderID = int
 
-
-# =============================================================================
-# --- Core Data Structures ---
-# =============================================================================
 
 @dataclass(frozen=True)
 class WarehouseLayout:
@@ -63,11 +55,6 @@ class OrderLine:
 class Order:
     """
     Represents a customer order, composed of multiple order lines.
-
-    Attributes:
-        id: The unique identifier for the order.
-        order_lines: A list of `OrderLine` objects comprising the order.
-        total_weight: The pre-calculated total weight of all items in the order.
     """
 
     id: TOrderID
@@ -75,11 +62,6 @@ class Order:
     total_weight: float = field(init=False)
 
     def __post_init__(self):
-        """
-        Calculates the total weight of the order after initialization.
-        This is a more efficient approach than calculating it on-the-fly.
-        """
-
         weight = sum(line.article.weight * line.quantity for line in self.order_lines)
         # Use object.__setattr__ to set field on a frozen dataclass
         object.__setattr__(self, 'total_weight', weight)
@@ -87,18 +69,6 @@ class Order:
 
 @dataclass(frozen=True)
 class JOBPRPInstance:
-    """
-    Main dataclass holding all parsed information for a JOBPRP instance.
-
-    Attributes:
-        name: The name of the instance.
-        picker_capacity: The maximum weight a picker can carry.
-        layout: The `WarehouseLayout` object describing the warehouse geometry.
-        articles: A dictionary mapping article IDs to `Article` objects.
-        sku_locations: A list of all `SKULocation` objects.
-        orders: A dictionary mapping order IDs to `Order` objects.
-    """
-
     name: str
     picker_capacity: float
     layout: WarehouseLayout
@@ -108,28 +78,12 @@ class JOBPRPInstance:
 
     @classmethod
     def from_file(cls, filepath: str) -> 'JOBPRPInstance':
-        """
-        Factory method to parse a JOBPRP instance from a text file.
-
-        Args:
-            filepath: The path to the instance file.
-
-        Returns:
-            An initialized `JOBPRPInstance` object.
-        """
-
         with open(filepath, 'r', encoding='latin-1') as f:
             return _JOBPRPParser(f).parse()
 
-# =============================================================================
-# --- Parser Implementation ---
-# =============================================================================
-
 class _JOBPRPParser:
     """
-    A private helper class to parse JOBPRP instance files.
-
-    This class is not intended to be used directly outside of this module.
+    Internal helper to parse JOBPRP instance text files.
     """
 
     def __init__(self, file_stream: TextIO):
@@ -140,8 +94,6 @@ class _JOBPRPParser:
         self._orders: Dict[TOrderID, Order] = {}
 
     def _parse_key_value_section(self, end_marker: str) -> None:
-        """Parses a generic key-value section of the file."""
-
         for line in self._lines:
             if not line or line.startswith('COMMENT'):
                 continue
@@ -151,8 +103,6 @@ class _JOBPRPParser:
             self._data[key.lower()] = value
 
     def _parse_article_section(self) -> None:
-        """Parses the ARTICLE_SECTION, populating article data."""
-
         num_articles = int(self._get_value_from_line(next(self._lines)))
         for _ in range(num_articles):
             line = next(self._lines)
@@ -161,8 +111,6 @@ class _JOBPRPParser:
             self._articles[article.id] = article
 
     def _parse_sku_section(self) -> None:
-        """Parses the ARTICLE_SECTION."""
-
         num_skus = int(self._get_value_from_line(next(self._lines)))
         for _ in range(num_skus):
             line = next(self._lines)
@@ -177,8 +125,6 @@ class _JOBPRPParser:
             self._sku_locations.append(location)
 
     def _parse_order_section(self) -> None:
-        """Parses the SKU_SECTION."""
-
         num_orders = int(self._get_value_from_line(next(self._lines)))
         order_id_counter = 0
         while order_id_counter < num_orders:
@@ -200,24 +146,17 @@ class _JOBPRPParser:
 
     @staticmethod
     def _get_value_from_line(line: str) -> str:
-        """Utility to extract the value part of a 'KEY : value' string."""
-        
         return line.split(':')[1].strip()
 
     def parse(self) -> JOBPRPInstance:
-        """Executes the full parsing workflow for the instance file."""
-
-        # --- File Parsing ---
-
         self._parse_key_value_section(end_marker='ARTICLE_SECTION')
         self._parse_article_section()
-        next(self._lines) # Skip SKU_SECTION header
-        self._parse_sku_section()
-        next(self._lines) # Skip ORDER_SECTION header
-        self._parse_order_section()
-        logging.debug(f"[JOBPRPInstance] Parsed orders: {list(self._orders.keys())}")
 
-        # --- Object Construction ---
+        next(self._lines)
+        self._parse_sku_section()
+
+        next(self._lines)
+        self._parse_order_section()
 
         layout = WarehouseLayout(
             num_aisles=int(self._data['num_aisles']),

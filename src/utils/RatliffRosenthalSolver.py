@@ -4,11 +4,8 @@ import math
 from typing import Dict, List
 from enum import Enum
 from collections import defaultdict
-
-# --- Import the data structures from your custom data parser ---
 from src.parser.jobprp_data import JOBPRPInstance
 
-# --- Enums for Type Safety and Readability ---
 class EquivalenceClass(str, Enum):
     UU1C = "U,U,1C"
     E01C = "E,0,1C"
@@ -33,7 +30,6 @@ class CrossoverConfig(str, Enum):
     iv = "iv"
     v = "v"
 
-# --- Constants and Logic Tables for the R&R DP Algorithm ---
 CLASSES = list(EquivalenceClass)
 
 TABLE_1_LOGIC = {
@@ -67,21 +63,10 @@ BASE_CASE_MAPPING = {
 
 class RatliffRosenthalSolver:
     """
-    An implementation of the Ratliff & Rosenthal Dynamic Programming algorithm
-    for solving the Single Picker Routing Problem (SPRP) in a rectangular warehouse.
-
-    This solver is used by the InitialSolutionFinder to calculate the cost of
-    singleton-order batches.
+    Dynamic Programming solver for the Single Picker Routing Problem (SPRP).
     """
 
     def __init__(self, instance):
-        """
-        Initializes the solver for a specific instance.
-
-        Args:
-            instance: A JOBPRPInstance, typically a temporary one for a single order.
-        """
-
         self.layout = instance.layout
         self.num_aisles = self.layout.num_aisles
         self.processed_skus = self._process_skus_and_depot(instance)
@@ -89,23 +74,13 @@ class RatliffRosenthalSolver:
         self.crossover_costs = self._calculate_crossover_costs()
         self.dp_table = {}
 
-
     def _process_skus_and_depot(self, instance) -> Dict[int, List[float]]:
-        """
-        Processes SKU locations and the depot into a simplified per-aisle picklist.
-
-        Returns:
-            A dictionary mapping aisle numbers to a sorted list of pick positions
-            (represented as distances from the top of the aisle).
-        """
-
         picklist = {}
         for sku in instance.sku_locations:
             aisle_num = sku.aisle
             distance_from_top = self.layout.distance_top_to_cell + (sku.cell * self.layout.distance_cell_to_cell)
             picklist.setdefault(aisle_num, []).append(distance_from_top)
 
-        # The total length is the distance to the last cell's center plus the distance from there to the bottom edge.
         aisle_length = (self.layout.distance_top_to_cell +
                         ((self.layout.num_cells_per_aisle - 1) * self.layout.distance_cell_to_cell) +
                         self.layout.distance_bottom_to_cell)
@@ -121,8 +96,6 @@ class RatliffRosenthalSolver:
 
 
     def _calculate_aisle_costs(self) -> Dict[int, Dict[str, float]]:
-        """Pre-calculates the cost for each of the 6 possible aisle traversal configurations."""
-
         costs = {j: {} for j in range(self.num_aisles)}
         aisle_length = (self.layout.distance_top_to_cell +
                         ((self.layout.num_cells_per_aisle - 1) * self.layout.distance_cell_to_cell) +
@@ -136,7 +109,6 @@ class RatliffRosenthalSolver:
                 continue
 
             min_pos_dist, max_pos_dist = positions[0], positions[-1]
-            # max_gap = max((positions[i+1] - positions[i] for i in range(len(positions) - 1)), default=0)
             gaps_between_items = [
                 positions[i+1] - positions[i] for i in range(len(positions) - 1)
             ]
@@ -154,8 +126,6 @@ class RatliffRosenthalSolver:
         return costs
 
     def _calculate_crossover_costs(self) -> Dict[int, Dict[CrossoverConfig, float]]:
-        """Pre-calculates the cost for each of the 5 possible cross-aisle traversal configurations."""
-
         costs = {j: {} for j in range(self.num_aisles - 1)}
         dist = self.layout.distance_aisle_to_aisle
         for j in range(self.num_aisles - 1):
@@ -169,37 +139,22 @@ class RatliffRosenthalSolver:
         return costs
 
     def solve(self) -> dict:
-        """
-        Executes the main DP algorithm to populate the DP table.
-
-        This follows the stage-by-stage calculation:
-        1. Base Case: Initialize costs for the first aisle.
-        2. Recursion: Iterate through the remaining aisles, calculating costs
-           for cross-aisle travel and then for aisle traversal.
-
-        Returns:
-            The completed DP table containing the costs and predecessors for each state.
-        """
-
         for j in range(self.num_aisles):
             self.dp_table[f"{j}-"] = {c: {'cost': math.inf} for c in CLASSES}
             self.dp_table[f"{j}+"] = {c: {'cost': math.inf} for c in CLASSES}
 
-        # --- BASE CASE: First Aisle ---
         stage_key = "0+"
         for config, end_class in BASE_CASE_MAPPING.items():
-            # Configuration 'vi' (skip) is not allowed if the aisle has items.
             if config == AisleConfig.vi and self.processed_skus.get(0):
                 continue
 
             cost = self.aisle_costs[0][config]
             self.dp_table[stage_key][end_class] = {
                 'cost': cost,
-                'pred_class': '-',      # No predecessor
+                'pred_class': '-',
                 'pred_config': config
             }
 
-        # --- RECURSION: Loop through remaining crossovers and aisles ---
         for j in range(self.num_aisles - 1):
             self._process_crossover(j)
             self._process_aisle(j + 1)
@@ -207,8 +162,6 @@ class RatliffRosenthalSolver:
         return self.dp_table
 
     def _process_aisle(self, j: int) -> None:
-        """The recursive step for calculating costs of traversing aisle `j`."""
-
         pred_stage_data = self.dp_table[f"{j}-"]
         stage_key = f"{j}+"
         for target_class in CLASSES:
@@ -227,8 +180,6 @@ class RatliffRosenthalSolver:
                 self.dp_table[stage_key][target_class] = {'cost': min_cost, **best_pred}
 
     def _process_crossover(self, j: int) -> None:
-        """The recursive step for calculating costs of crossing from aisle `j` to `j+1`."""
-
         pred_stage_data = self.dp_table[f"{j}+"]
         stage_key = f"{j+1}-"
         for target_class in CLASSES:
@@ -245,8 +196,6 @@ class RatliffRosenthalSolver:
                 self.dp_table[stage_key][target_class] = {'cost': min_cost, **best_pred}
 
     def display_results_table(self) -> pd.DataFrame:
-        """Formats the DP table into a human-readable pandas DataFrame."""
-
         stages = [f"{j}{s}" for j in range(self.num_aisles) for s in ["-", "+"]]
         df = pd.DataFrame(index=[c.value for c in CLASSES], columns=stages)
         df.index.name = "Equivalence Class"
@@ -273,21 +222,14 @@ class RatliffRosenthalSolver:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Solve the R&R Order Picking Problem for a given instance file.")
-
-    # Add a required argument for the file path
-    parser.add_argument("filepath", help="Path to the instance file (e.g., 'data/instance.txt')")
+    parser = argparse.ArgumentParser(description="Solve the SPRP instance via DP.")
+    parser.add_argument("filepath", help="Path to the instance file")
     args = parser.parse_args()
-    file_to_solve = args.filepath
 
     try:
-        instance = JOBPRPInstance.from_file(file_to_solve)
-        solver = R_and_R_Solver(instance)
+        instance = JOBPRPInstance.from_file(args.filepath)
+        solver = RatliffRosenthalSolver(instance)
         solver.solve()
-        results_dataframe = solver.display_results_table()
-        print(results_dataframe.to_string())
-    except FileNotFoundError:
-        print(f"Error: Instance file not found at '{file_to_solve}'")
-        print("Please ensure 'jobprp_data.py' and your instance file are in the correct directory.")
+        print(solver.display_results_table().to_string())
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Error processing {args.filepath}: {e}")

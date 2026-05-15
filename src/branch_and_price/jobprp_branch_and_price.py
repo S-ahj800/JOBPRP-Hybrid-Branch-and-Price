@@ -11,27 +11,10 @@ from src.utils.logging_utils import write_metrics_to_csv
 
 class JOBPRPBranchAndPrice:
     """
-    Manages the Branch and Price solution process for the JOBPRP.
-
-    Attributes:
-        instance: The loaded JOBPRP instance data.
-        log_directory: Path to the directory for saving log and .lp files.
-        state_space_graph: The pre-built graph for picker routing, shared by all nodes.
-        best_solution_node: Stores the node that found the best integer solution.
-        global_upper_bound: The objective value of the best known integer solution.
-        time_limit: The maximum allowed runtime in seconds (default: 3600).
+    Core engine for the Branch and Price solution process for JOBPRP.
     """
 
     def __init__(self, jobprp_instance: JOBPRPInstance, log_directory: str, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0):
-        """
-        Initializes the solver.
-
-        Args:
-            jobprp_instance: The full JOBPRP instance data.
-            log_directory: Path to the directory for saving logs and .lp files.
-            time_limit: Maximum runtime in seconds (default: 3600s = 1 hour).
-        """
-
         self.instance = jobprp_instance
         self.log_directory = log_directory
         self.time_limit = time_limit
@@ -45,7 +28,6 @@ class JOBPRPBranchAndPrice:
         }
 
         self.start_time = time.time()
-
         self.time_to_best_sol = 0.0
 
         logging.info("Building state-space graph ...")
@@ -54,10 +36,6 @@ class JOBPRPBranchAndPrice:
         self.global_upper_bound: float = float('inf')
 
     def solve(self):
-        """
-        Executes the main Branch and Price algorithm loop.
-        """
-
         logging.info(f"[B&P] Starting. Time Limit: {self.time_limit}s. Heuristic: {self.enable_heuristic}")
         start_time = time.time()
 
@@ -77,6 +55,7 @@ class JOBPRPBranchAndPrice:
 
             current_lb = current_node.objective_value()
 
+            # Check gap tolerance
             if self.global_upper_bound < 1e10:
                 if abs(self.global_upper_bound) > 1e-9:
                     current_gap = (self.global_upper_bound - current_lb) / self.global_upper_bound
@@ -97,16 +76,14 @@ class JOBPRPBranchAndPrice:
                 queue.append(current_node)
                 break
 
-            # 1. Prune by bound. If the node's LB is worse than the best known solution.
+            # Pruning checks
             if current_node.objective_value() >= self.global_upper_bound - 1e-6:
                 logging.info(f"Pruning Node {current_node.id} by bound.")
                 continue
 
-            # 2. Prune by infeasibility: If the RMP could not be solved
             if not current_node.is_feasible():
                 continue
 
-            # 3. Check for integer solution (potential new upper bound).
             if current_node.has_integer_solution():
                 logging.info(f"[B&P] Found integer solution at Node {current_node.id}.")
                 if current_node.objective_value() < self.global_upper_bound:
@@ -114,10 +91,8 @@ class JOBPRPBranchAndPrice:
                     self.best_solution_node = current_node
                     self.time_to_best_sol = time.time() - start_time
                     logging.info(f"[B&P] New Global Upper Bound: {self.global_upper_bound:.2f}")
-                # Fathom by integrality
                 continue
 
-            # 4. If fractional and still promising, branch.
             child_nodes = self._branch(current_node)
             if child_nodes:
                 queue.extend(child_nodes)
@@ -125,16 +100,12 @@ class JOBPRPBranchAndPrice:
         self._report_final_metrics(queue)
 
     def _create_root_node(self) -> BranchNode:
-        """Creates the root node of the B&P tree and sets the initial Global UB."""
-
         logging.debug("Creating root node...")
         finder = InitialSolutionFinder(self.instance)
         initial_columns = finder.find()
 
         if initial_columns:
             initial_obj = sum(cost for _, cost in initial_columns)
-
-            # 2. Set it as the Global Upper Bound immediately
             if initial_obj < self.global_upper_bound:
                 self.global_upper_bound = initial_obj
                 self.time_to_best_sol = 0.0
@@ -154,10 +125,6 @@ class JOBPRPBranchAndPrice:
         )
 
     def _branch(self, node: BranchNode) -> Optional[Tuple[BranchNode, BranchNode]]:
-        """
-        Performs Ryan-Foster branching on a node with a fractional solution.
-        """
-
         orders_to_branch = node.find_orders_to_branch_on()
         if not orders_to_branch:
             return None
@@ -166,14 +133,11 @@ class JOBPRPBranchAndPrice:
         logging.info(f"Branching on Node {node.id} on orders ({o1}, {o2}).")
 
         parent_lb_val = node.objective_value()
+        parent_columns = node.get_batch_columns()
 
-        # Create two new branching rules: one for 'apart', one for 'together'
         rule_apart = BranchingRule(order1=o1, order2=o2, orders_together=False)
         rule_together = BranchingRule(order1=o1, order2=o2, orders_together=True)
 
-        parent_columns = node.get_batch_columns()
-
-        # Create child nodes
         child_apart = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_apart], initial_columns=parent_columns,
@@ -209,10 +173,7 @@ class JOBPRPBranchAndPrice:
         else:
              gap_pct = float('inf')
 
-        if gap_pct < 1e-4:
-            is_opt = 1
-        else:
-            is_opt = 0
+        is_opt = 1 if gap_pct < 1e-4 else 0
 
         total_time = time.time() - self.start_time
         total_iter = self.global_stats['Total_CG_Iter']
