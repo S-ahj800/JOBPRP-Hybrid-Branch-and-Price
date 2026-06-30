@@ -14,9 +14,8 @@ class JOBPRPBranchAndPrice:
     Core engine for the Branch and Price solution process for JOBPRP.
     """
 
-    def __init__(self, jobprp_instance: JOBPRPInstance, log_directory: str, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0):
+    def __init__(self, jobprp_instance: JOBPRPInstance, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0):
         self.instance = jobprp_instance
-        self.log_directory = log_directory
         self.time_limit = time_limit
         self.enable_heuristic = enable_heuristic
         self.gap_tolerance = gap_tolerance

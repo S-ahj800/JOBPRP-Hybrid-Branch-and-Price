@@ -19,8 +19,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.append(PROJECT_ROOT)
 
 DATA_DIR = os.path.join(PROJECT_ROOT, 'src', 'data')
-RESULTS_DIR = os.path.join(PROJECT_ROOT, 'src', 'results', 'Benchmarks')
-LOG_DIR = os.path.join(PROJECT_ROOT, 'src', 'results', 'logs')
+RESULTS_DIR = os.path.join(PROJECT_ROOT, 'src', 'MISC')
 
 BENCHMARK_CSVS = [
     "Benchmark1_Small.csv",
@@ -53,18 +52,9 @@ def benchmark_worker(task_args):
         def run_solve(path, use_heur, enable_log):
             try:
                 instance = JOBPRPInstance.from_file(path)
-                temp_dir_obj = None
-
-                if enable_log:
-                    inst_log_dir = os.path.join(log_dir, f"{instance_name}_logs")
-                    os.makedirs(inst_log_dir, exist_ok=True)
-                else:
-                    temp_dir_obj = tempfile.TemporaryDirectory()
-                    inst_log_dir = temp_dir_obj.name
 
                 solver = JOBPRPBranchAndPrice(
                     jobprp_instance=instance,
-                    log_directory=inst_log_dir,
                     time_limit=3600.0,
                     enable_heuristic=use_heur,
                     gap_tolerance=0.01
@@ -76,9 +66,6 @@ def benchmark_worker(task_args):
 
                 solver.solve()
                 res = getattr(solver, 'final_metrics', {})
-
-                if temp_dir_obj:
-                    temp_dir_obj.cleanup()
 
                 return res
             except Exception as inner_e:
