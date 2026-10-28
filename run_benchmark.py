@@ -158,6 +158,7 @@ def get_real_path_helper(benchmark_set, csv_filename, data_root):
 def find_benchmark_csv(filename, project_root):
     search_paths = [
         project_root,
+        os.path.join(project_root, 'MISC'),
         os.path.join(project_root, 'results', 'Benchmarks'),
         os.path.join(project_root, 'data'),
     ]
