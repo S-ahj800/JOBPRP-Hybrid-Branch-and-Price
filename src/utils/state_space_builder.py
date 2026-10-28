@@ -88,7 +88,9 @@ class StateSpaceBuilder:
                     arcs.append(self._create_arc(s_plus, start_class.value, s_minus, end_class.value, 'cross', cost=cost))
 
         last_aisle_stage = f'{num_aisles - 1}+'
-        final_states = {EquivalenceClass.E01C, EquivalenceClass.ZE1C, EquivalenceClass.EE1C, EquivalenceClass.ZZ1C}
+        # A tuple (not a set): set iteration order of Enum members depends on Python's string
+        # hash seed, which changes the arc (variable) order of the pricing MIP from run to run.
+        final_states = (EquivalenceClass.E01C, EquivalenceClass.ZE1C, EquivalenceClass.EE1C, EquivalenceClass.ZZ1C)
 
         for state in final_states:
             cost = self._layout.distance_top_or_bottom_to_depot

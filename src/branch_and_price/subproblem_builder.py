@@ -1,5 +1,4 @@
 import logging
-import os
 from collections import defaultdict
 from typing import Dict, List
 
@@ -25,8 +24,7 @@ class SubproblemBuilder:
               order_duals: Dict[TOrderID, float],
               branching_rules: List[BranchingRule],
               node_id: int,
-              iteration: int,
-              log_directory: str) -> Subproblem:
+              iteration: int) -> Subproblem:
 
         model_name = f'subproblem_node{node_id}_iter{iteration}'
         model = gp.Model(model_name)
@@ -41,9 +39,6 @@ class SubproblemBuilder:
         self._build_constraints(model, arc_vars, sku_vars, order_vars, branching_rules)
 
         model.update()
-
-        lp_filename = os.path.join(log_directory, f"{model_name}.lp")
-        model.write(lp_filename)
 
         arc_to_var_bidict = bidict({
             (arc['start_node'], arc['end_node']): var

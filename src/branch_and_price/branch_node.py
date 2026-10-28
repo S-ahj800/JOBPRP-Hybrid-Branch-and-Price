@@ -31,7 +31,6 @@ class BranchNode:
                  jobprp_instance: JOBPRPInstance,
                  state_space_graph: StateSpaceGraph,
                  branching_rules: List[BranchingRule],
-                 log_directory: str,
                  initial_columns: List[TBatchColumn],
                  enable_heuristic: bool = True,
                  global_stats: Dict = None,
@@ -41,7 +40,6 @@ class BranchNode:
         self.jobprp_instance = jobprp_instance
         self.branching_rules = branching_rules
         self.lower_bound = lower_bound
-        self.log_directory = log_directory
 
         self.enable_heuristic = enable_heuristic
         self.global_stats = global_stats if global_stats is not None else defaultdict(int)
@@ -273,7 +271,7 @@ class BranchNode:
         logging.debug(f"[Node {self.id}] Heuristic failed/disabled. Calling Gurobi.")
 
         subproblem = self.subproblem_builder.build(
-            order_duals, self.branching_rules, self.id, iteration, self.log_directory
+            order_duals, self.branching_rules, self.id, iteration
         )
         subproblem._model.setParam('Seed', 42)
         subproblem.solve()

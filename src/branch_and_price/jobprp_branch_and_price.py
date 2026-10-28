@@ -117,7 +117,6 @@ class JOBPRPBranchAndPrice:
             state_space_graph=self.state_space_graph,
             branching_rules=[],
             initial_columns=initial_columns,
-            log_directory=self.log_directory,
             enable_heuristic=self.enable_heuristic,
             global_stats=self.global_stats,
             lower_bound=0.0
@@ -140,13 +139,13 @@ class JOBPRPBranchAndPrice:
         child_apart = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_apart], initial_columns=parent_columns,
-            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
+            enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         child_together = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_together], initial_columns=parent_columns,
-            log_directory=self.log_directory, enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
+            enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         return (child_apart, child_together)
