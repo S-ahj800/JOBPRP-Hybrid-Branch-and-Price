@@ -1,0 +1,23 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments and local environment variables
+.venv/
+venv/
+.env
+.env.*
+
+# Logs and solver output
+*.log
+gurobi.log
+
+# Generated benchmark report
+/results/Final_Benchmark_Parallel_Report.csv
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

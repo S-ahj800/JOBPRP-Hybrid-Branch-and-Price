@@ -9,17 +9,13 @@ import traceback
 import time
 
 # Configuration paths
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-if os.path.basename(SCRIPT_DIR) == 'src':
-    PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-else:
-    PROJECT_ROOT = SCRIPT_DIR
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 if PROJECT_ROOT not in sys.path:
     sys.path.append(PROJECT_ROOT)
 
-DATA_DIR = os.path.join(PROJECT_ROOT, 'src', 'data')
-RESULTS_DIR = os.path.join(PROJECT_ROOT, 'src', 'MISC')
+DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
+RESULTS_DIR = os.path.join(PROJECT_ROOT, 'results')
 
 BENCHMARK_CSVS = [
     "Benchmark1_Small.csv",
@@ -162,8 +158,8 @@ def get_real_path_helper(benchmark_set, csv_filename, data_root):
 def find_benchmark_csv(filename, project_root):
     search_paths = [
         project_root,
-        os.path.join(project_root, 'src', 'results', 'Benchmarks'),
-        os.path.join(project_root, 'src', 'data'),
+        os.path.join(project_root, 'results', 'Benchmarks'),
+        os.path.join(project_root, 'data'),
     ]
     for p in search_paths:
         cand = os.path.join(p, filename)
