@@ -1,9 +1,11 @@
+import itertools
 import logging
 import time
 from typing import List, Optional, Tuple
 
 from src.parser.jobprp_data import JOBPRPInstance, TOrderID
 from src.branch_and_price.branch_node import BranchNode
+from src.branch_and_price.heuristic_config import HeuristicConfig, DEFAULT_HEURISTIC_CONFIG
 from src.branch_and_price.branching_rule import BranchingRule
 from src.utils.state_space_builder import StateSpaceBuilder
 from src.branch_and_price.initial_solution_finder import InitialSolutionFinder
@@ -14,8 +16,13 @@ class JOBPRPBranchAndPrice:
     Core engine for the Branch and Price solution process for JOBPRP.
     """
 
-    def __init__(self, jobprp_instance: JOBPRPInstance, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0):
+    def __init__(self, jobprp_instance: JOBPRPInstance, time_limit: float = 3600.0, enable_heuristic: bool = True, gap_tolerance: float = 0.0,
+                 heuristic_config: HeuristicConfig = DEFAULT_HEURISTIC_CONFIG, record_trace: bool = False):
+        # Node ids enter the heuristic's random seed; restart them for every solve so that a run
+        # does not depend on how many instances the same process has solved before.
+        BranchNode.next_node_id = itertools.count(start=0)
         self.instance = jobprp_instance
+        self.heuristic_config = heuristic_config
         self.time_limit = time_limit
         self.enable_heuristic = enable_heuristic
         self.gap_tolerance = gap_tolerance
@@ -27,6 +34,9 @@ class JOBPRPBranchAndPrice:
         }
 
         self.start_time = time.time()
+        if record_trace:
+            self.global_stats['trace'] = []
+            self.global_stats['t0'] = self.start_time
         self.time_to_best_sol = 0.0
 
         logging.info("Building state-space graph ...")
@@ -53,6 +63,10 @@ class JOBPRPBranchAndPrice:
             current_node = queue.pop()
 
             current_lb = current_node.objective_value()
+            trace = self.global_stats.get('trace')
+            if trace is not None:
+                trace.append(('node', round(time.time() - self.start_time, 3), current_node.id, round(current_lb, 4),
+                              round(self.global_upper_bound, 4) if self.global_upper_bound < 1e10 else None))
 
             # Check gap tolerance
             if self.global_upper_bound < 1e10:
@@ -117,7 +131,7 @@ class JOBPRPBranchAndPrice:
             state_space_graph=self.state_space_graph,
             branching_rules=[],
             initial_columns=initial_columns,
-            enable_heuristic=self.enable_heuristic,
+            enable_heuristic=self.enable_heuristic, heuristic_config=self.heuristic_config,
             global_stats=self.global_stats,
             lower_bound=0.0
         )
@@ -139,13 +153,13 @@ class JOBPRPBranchAndPrice:
         child_apart = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_apart], initial_columns=parent_columns,
-            enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
+            enable_heuristic=self.enable_heuristic, heuristic_config=self.heuristic_config, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         child_together = BranchNode(
             jobprp_instance=self.instance, state_space_graph=self.state_space_graph,
             branching_rules=node.branching_rules + [rule_together], initial_columns=parent_columns,
-            enable_heuristic=self.enable_heuristic, global_stats=self.global_stats, lower_bound=parent_lb_val
+            enable_heuristic=self.enable_heuristic, heuristic_config=self.heuristic_config, global_stats=self.global_stats, lower_bound=parent_lb_val
         )
 
         return (child_apart, child_together)
@@ -195,6 +209,9 @@ class JOBPRPBranchAndPrice:
         }
 
         self.final_metrics = metrics
+        trace = self.global_stats.get('trace')
+        if trace is not None:
+            trace.append(('end', round(total_time, 3), round(lb, 4), round(ub, 4) if ub < 1e10 else None))
 
         logging.info("="*60)
         logging.info(f"FINAL RESULTS FOR {self.instance.name}")

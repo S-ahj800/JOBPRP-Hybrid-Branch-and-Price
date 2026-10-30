@@ -19,6 +19,7 @@ from src.utils import has_solution, is_integer, is_non_zero
 from src.branch_and_price.types import TBatchColumn
 from src.utils.logging_utils import StreamToLogger
 from src.utils.RatliffRosenthalSolver import RatliffRosenthalSolver, EquivalenceClass
+from src.branch_and_price.heuristic_config import HeuristicConfig, DEFAULT_HEURISTIC_CONFIG
 
 class BranchNode:
     """
@@ -34,7 +35,8 @@ class BranchNode:
                  initial_columns: List[TBatchColumn],
                  enable_heuristic: bool = True,
                  global_stats: Dict = None,
-                 lower_bound=0.0):
+                 lower_bound=0.0,
+                 heuristic_config: HeuristicConfig = DEFAULT_HEURISTIC_CONFIG):
 
         self.id = next(BranchNode.next_node_id)
         self.jobprp_instance = jobprp_instance
@@ -42,6 +44,7 @@ class BranchNode:
         self.lower_bound = lower_bound
 
         self.enable_heuristic = enable_heuristic
+        self.heuristic_config = heuristic_config
         self.global_stats = global_stats if global_stats is not None else defaultdict(int)
 
         self.subproblem_builder = SubproblemBuilder(jobprp_instance, state_space_graph)
@@ -232,6 +235,11 @@ class BranchNode:
             with redirect_stdout(StreamToLogger(gurobi_logger, logging.DEBUG)):
                 self._rmp.optimize()
 
+            trace = self.global_stats.get('trace')
+            if trace is not None and has_solution(self._rmp.status):
+                trace.append(('cg', round(time.time() - self.global_stats['t0'], 3), self.id, iteration,
+                              round(self._rmp.ObjVal, 4)))
+
             if not has_solution(self._rmp.status):
                 logging.debug(f"[Node {self.id}] RMP infeasible or unbounded.")
                 break
@@ -282,7 +290,8 @@ class BranchNode:
 
     def _run_heuristic(self, order_duals, iteration):
         """Phase 1: Smart Greedy Heuristic."""
-        local_seed = 42 + (self.id * 100000) + iteration
+        cfg = self.heuristic_config
+        local_seed = cfg.base_seed + (self.id * 100000) + iteration
         rng = random.Random(local_seed)
 
         num_orders = len(self.jobprp_instance.orders)
@@ -308,13 +317,20 @@ class BranchNode:
         sorted_cand = sorted(candidates, key=lambda x: (x['score'], x['grp'][0]), reverse=True)
         if not sorted_cand:
             return []
+        if not cfg.density_ranking:
+            # Ablation: same candidates in a fixed order that ignores profit density.
+            random.Random(local_seed + 7919).shuffle(sorted_cand)
 
         avg_score = sum(c['score'] for c in sorted_cand) / len(sorted_cand)
         limit = max(1, int(len(sorted_cand) * config['seed_limit_pct']))
         found = []
 
-        for _ in range(config['num_attempts']):
-            seed = rng.choice(sorted_cand[:limit])
+        for attempt in range(config['num_attempts']):
+            if cfg.random_seed_selection:
+                seed = rng.choice(sorted_cand[:limit])
+            else:
+                # Ablation: deterministic seeds, taken from the same pool in turn.
+                seed = sorted_cand[attempt % limit]
             curr_b = list(seed['grp'])
             curr_w = seed['w']
             curr_aisles = set()
@@ -335,7 +351,9 @@ class BranchNode:
                     c_aisles.update(self.order_cache[o]['aisles'])
 
                 accept = False
-                if len(c_aisles - curr_aisles) <= config['aisle_limit']:
+                if not cfg.aisle_filter:
+                    accept = True
+                elif len(c_aisles - curr_aisles) <= config['aisle_limit']:
                     accept = True
                 elif cand['score'] > (avg_score * 2):
                     accept = True
