@@ -70,6 +70,14 @@ def resolve(family, name):
     raise FileNotFoundError(f"{name}.txt not found in {folder}")
 
 
+def warm_up_worker():
+    """Acquire the Gurobi licence once per worker process, so that the licence check
+    (about 2 s with a WLS licence) is not counted in the running time of the first run."""
+    import gurobipy as gp
+    model = gp.Model()
+    model.dispose()
+
+
 def run_one(task):
     family, benchmark, name, variant, seed = task
     from src.parser.jobprp_data import JOBPRPInstance
@@ -151,7 +159,7 @@ def main():
         return
 
     write_header = not os.path.exists(out_path)
-    with open(out_path, "a", newline="") as f, multiprocessing.Pool(args.workers) as pool:
+    with open(out_path, "a", newline="") as f, multiprocessing.Pool(args.workers, initializer=warm_up_worker) as pool:
         writer = csv.DictWriter(f, fieldnames=FIELDS)
         if write_header:
             writer.writeheader()
