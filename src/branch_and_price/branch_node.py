@@ -269,7 +269,9 @@ class BranchNode:
 
         # PHASE 1: HEURISTIC
         if self.enable_heuristic:
+            t_heur = time.perf_counter()
             heuristic_cols = self._run_heuristic(order_duals, iteration)
+            self.global_stats['Heur_Time'] = self.global_stats.get('Heur_Time', 0.0) + time.perf_counter() - t_heur
             if heuristic_cols:
                 self.global_stats['Heur_Calls'] += 1
                 return heuristic_cols
@@ -278,6 +280,7 @@ class BranchNode:
         self.global_stats['Exact_Calls'] += 1
         logging.debug(f"[Node {self.id}] Heuristic failed/disabled. Calling Gurobi.")
 
+        t_exact = time.perf_counter()
         subproblem = self.subproblem_builder.build(
             order_duals, self.branching_rules, self.id, iteration
         )
@@ -285,6 +288,7 @@ class BranchNode:
         subproblem.solve()
 
         exact_cols = subproblem.get_profitable_columns()
+        self.global_stats['Exact_Time'] = self.global_stats.get('Exact_Time', 0.0) + time.perf_counter() - t_exact
         exact_cols.sort(key=lambda c: (round(c[1], 4), len(c[0]), tuple(sorted(c[0]))))
         return exact_cols
 
@@ -299,8 +303,8 @@ class BranchNode:
         config = {
             'num_attempts': int(num_orders * 5),
             'max_columns': max(5, int(num_orders // 5)),
-            'aisle_limit': 2,
-            'seed_limit_pct': 0.25
+            'aisle_limit': cfg.aisle_limit,
+            'seed_limit_pct': cfg.seed_pool_pct
         }
 
         # 1. Filter and Sort Orders by (Dual / Weight)
@@ -355,7 +359,7 @@ class BranchNode:
                     accept = True
                 elif len(c_aisles - curr_aisles) <= config['aisle_limit']:
                     accept = True
-                elif cand['score'] > (avg_score * 2):
+                elif cand['score'] > (avg_score * cfg.density_factor):
                     accept = True
 
                 if accept:

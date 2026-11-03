@@ -14,7 +14,12 @@ Settings are those of the main experiments: time limit 3600 s, one thread, stopp
 
 Usage (from the repository root):
   python experiments/ablation.py --workers 10
-  python experiments/ablation.py --workers 10 --plan seeds     # full method with extra seeds
+  python experiments/ablation.py --workers 10 --plan seeds        # full method with extra seeds
+  python experiments/ablation.py --workers 10 --plan sensitivity  # parameter sensitivity (R2-6, R1-2)
+
+The sensitivity plan changes one heuristic parameter at a time around its default (aisle limit
+1/3, density factor 1.5/3, seed pool 10%/50%) and reruns the default as the baseline of the same
+batch. Its results go to results/ablation/sensitivity_runs.csv and traces_sensitivity_runs/.
 
 Results are appended to results/ablation/ablation_runs.csv (one row per run); finished
 runs are skipped, so the command can be restarted after an interruption. The bound
@@ -52,9 +57,19 @@ VARIANTS = {
 }
 EXTRA_SEEDS = [1042, 2042]
 
+SENSITIVITY = {
+    "full": dict(),
+    "al1": dict(aisle_limit=1),
+    "al3": dict(aisle_limit=3),
+    "df15": dict(density_factor=1.5),
+    "df3": dict(density_factor=3.0),
+    "sp10": dict(seed_pool_pct=0.10),
+    "sp50": dict(seed_pool_pct=0.50),
+}
+
 FIELDS = ["family", "benchmark", "instance", "variant", "seed", "gap_tolerance", "status",
           "time", "time_to_best", "ub", "lb", "gap_pct", "cg_iter", "heur_calls", "exact_calls",
-          "heur_hit_pct", "nodes", "wall_clock"]
+          "heur_hit_pct", "nodes", "heur_time", "exact_time", "wall_clock"]
 
 
 def load_instances():
@@ -79,7 +94,7 @@ def warm_up_worker():
 
 
 def run_one(task):
-    family, benchmark, name, variant, seed = task
+    family, benchmark, name, variant, seed, settings, trace_dir = task
     from src.parser.jobprp_data import JOBPRPInstance
     from src.branch_and_price.jobprp_branch_and_price import JOBPRPBranchAndPrice
     from src.branch_and_price.heuristic_config import HeuristicConfig
@@ -92,7 +107,7 @@ def run_one(task):
         solver = JOBPRPBranchAndPrice(
             jobprp_instance=instance, time_limit=TIME_LIMIT, enable_heuristic=True,
             gap_tolerance=GAP_TOLERANCE[family],
-            heuristic_config=HeuristicConfig(base_seed=seed, **VARIANTS[variant]),
+            heuristic_config=HeuristicConfig(base_seed=seed, **settings),
             record_trace=True)
         solver.solve()
         m = solver.final_metrics
@@ -102,9 +117,11 @@ def run_one(task):
                    lb=m["LB"], gap_pct=m["Gap %"], cg_iter=m["Total CG Iterations"],
                    heur_calls=m["Heur Calls"], exact_calls=m["Exact Calls"],
                    heur_hit_pct=f"{100 * m['Heur Calls'] / total:.2f}" if total else "0",
-                   nodes=sum(1 for t in trace if t[0] == "node"))
-        os.makedirs(os.path.join(OUT_DIR, "traces"), exist_ok=True)
-        with gzip.open(os.path.join(OUT_DIR, "traces", f"{name}__{variant}__{seed}.json.gz"), "wt") as f:
+                   nodes=sum(1 for t in trace if t[0] == "node"),
+                   heur_time=f"{solver.global_stats.get('Heur_Time', 0.0):.2f}",
+                   exact_time=f"{solver.global_stats.get('Exact_Time', 0.0):.2f}")
+        os.makedirs(os.path.join(OUT_DIR, trace_dir), exist_ok=True)
+        with gzip.open(os.path.join(OUT_DIR, trace_dir, f"{name}__{variant}__{seed}.json.gz"), "wt") as f:
             json.dump(trace, f)
     except Exception as e:
         row.update(status=f"error: {e}")
@@ -116,14 +133,15 @@ def run_one(task):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--workers", type=int, default=10)
-    parser.add_argument("--plan", choices=["variants", "seeds", "all"], default="all",
+    parser.add_argument("--plan", choices=["variants", "seeds", "all", "sensitivity"], default="all",
                         help="variants: the five variants with seed 42; seeds: 'full' with the extra "
-                             "seeds; all: both (default)")
+                             "seeds; all: both (default); sensitivity: one-at-a-time parameter study")
     parser.add_argument("--families", nargs="+", choices=list(GAP_TOLERANCE),
                         help="restrict to these benchmark families")
     parser.add_argument("--dry-run", action="store_true", help="list the runs and exit")
     parser.add_argument("--limit", type=int, help="run only the first N pending runs (smoke test)")
-    parser.add_argument("--output", default="ablation_runs.csv", help="file name in results/ablation/")
+    parser.add_argument("--output", help="file name in results/ablation/ (default: ablation_runs.csv, "
+                                         "or sensitivity_runs.csv for --plan sensitivity)")
     args = parser.parse_args()
 
     instances = load_instances()
@@ -132,14 +150,22 @@ def main():
     for r in instances:
         resolve(r["family"], r["instance"])  # fail early if a file is missing
 
+    output = args.output or ("sensitivity_runs.csv" if args.plan == "sensitivity" else "ablation_runs.csv")
+    trace_dir = "traces" if output == "ablation_runs.csv" else "traces_" + os.path.splitext(output)[0]
+
     tasks = []
     if args.plan in ("variants", "all"):
-        tasks += [(r["family"], r["benchmark"], r["instance"], v, 42) for r in instances for v in VARIANTS]
+        tasks += [(r["family"], r["benchmark"], r["instance"], v, 42, VARIANTS[v], trace_dir)
+                  for r in instances for v in VARIANTS]
     if args.plan in ("seeds", "all"):
-        tasks += [(r["family"], r["benchmark"], r["instance"], "full", s) for r in instances for s in EXTRA_SEEDS]
+        tasks += [(r["family"], r["benchmark"], r["instance"], "full", s, VARIANTS["full"], trace_dir)
+                  for r in instances for s in EXTRA_SEEDS]
+    if args.plan == "sensitivity":
+        tasks += [(r["family"], r["benchmark"], r["instance"], v, 42, SENSITIVITY[v], trace_dir)
+                  for r in instances for v in SENSITIVITY]
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    out_path = os.path.join(OUT_DIR, args.output)
+    out_path = os.path.join(OUT_DIR, output)
     done = set()
     if os.path.exists(out_path):
         with open(out_path, newline="") as f:
@@ -153,7 +179,7 @@ def main():
     print(f"{len(done)} runs already finished, {len(tasks)} to go, {args.workers} workers")
     if args.dry_run:
         for t in tasks[:20]:
-            print("  ", t)
+            print("  ", t[:5])
         return
     if not tasks:
         return

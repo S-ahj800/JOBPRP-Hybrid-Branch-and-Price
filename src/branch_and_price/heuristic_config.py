@@ -19,11 +19,19 @@ class HeuristicConfig:
                            of the candidates. If False, the seeds are taken from the
                            same pool deterministically in turn.
     base_seed:             base value of the per-call random seed.
+    aisle_limit:           maximum number of new aisles a candidate may add and still be
+                           accepted by the aisle filter.
+    density_factor:        a candidate that adds more aisles is still accepted if its profit
+                           density exceeds density_factor times the average density.
+    seed_pool_pct:         fraction of the ranked candidates from which seeds are drawn.
     """
     density_ranking: bool = True
     aisle_filter: bool = True
     random_seed_selection: bool = True
     base_seed: int = 42
+    aisle_limit: int = 2
+    density_factor: float = 2.0
+    seed_pool_pct: float = 0.25
 
 
 DEFAULT_HEURISTIC_CONFIG = HeuristicConfig()
