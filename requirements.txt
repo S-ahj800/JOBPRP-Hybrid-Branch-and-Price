@@ -2,3 +2,4 @@ pandas
 numpy
 bidict
 gurobipy>=12.0
+scipy

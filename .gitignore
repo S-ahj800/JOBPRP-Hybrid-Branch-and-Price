@@ -26,3 +26,7 @@ Thumbs.db
 
 # Patch files
 *.patch
+
+# Trace folders of the ablation study (stored as .tar archives)
+/results/ablation/traces/
+/results/ablation/traces_sensitivity_runs/

@@ -1,0 +1,7 @@
+Variant,BAHCECI Time ratio,BAHCECI Heur. success rate (%),HENN #OPT (of 20),HENN Root solved (of 20),HENN Heur. success rate (%),MUTER #OPT (of 30),MUTER Root time ratio,MUTER Heur. success rate (%)
+Classic†,1.58*,–,0,–,–,9,–,–
+Full,1.00,67,4,14,70,10,1.00,38
+no_R,1.00,67,4,14,69,10,0.96,37
+no_A,1.02*,67,4,12,73,9,1.12,40
+no_D,1.17*,57,2,7,51,9,1.39*,18
+no_DA,1.16*,56,2,6,52,9,1.42*,17

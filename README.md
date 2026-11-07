@@ -82,6 +82,25 @@ To run only some benchmarks or instances (for example, to re-run a single instan
 python run_benchmark.py --workers 1 --benchmarks Benchmark3_Medium --instances 30_48_0 --output rerun_30_48_0.csv
 ```
 
+### Component analysis and parameter sensitivity (Section 4.3 of the paper)
+
+`experiments/ablation.py` runs the hybrid method on the 1400 instances listed in `experiments/ablation_instances.csv` (all 1350 BAHCECI_ONCAN instances, all 30 small MUTER_ONCAN instances and 20 small HENN instances, five per capacity level, selected with `experiments/select_instances.py`):
+
+```bash
+python experiments/ablation.py --workers 10                      # variants full, no_R, no_A, no_D, no_DA (seed 42) and full with seeds 1042, 2042
+python experiments/ablation.py --workers 10 --plan sensitivity   # aisle limit 1/3, density factor 1.5/3, seed pool 10%/50% and the default
+```
+
+The runs are written to `results/ablation/ablation_runs.csv` and `results/ablation/sensitivity_runs.csv`; the bound trajectory of every run is written to `results/ablation/traces/` and `results/ablation/traces_sensitivity_runs/`. In the repository these two folders are stored as `traces.tar` and `traces_sensitivity_runs.tar`. Rows whose status is not `ok` are runs that failed to start (Gurobi licence errors) and were repeated; they are ignored by the analysis.
+
+The tables of the paper are reproduced from these files (and from the main reports for the Classic row and the time-limit analysis) with
+
+```bash
+python experiments/analyze_ablation.py
+```
+
+which prints Tables 7, 8 and 9 and the numbers quoted in Sections 4.3 and 4.4, and writes them to `results/ablation/table7_ablation.csv`, `table8_seeds.csv`, `table9_sensitivity.csv` and `text_numbers.txt`. The definitions of all measures are given at the top of the script.
+
 ## Repository layout
 
 ```text
@@ -91,6 +110,7 @@ python run_benchmark.py --workers 1 --benchmarks Benchmark3_Medium --instances 3
 ├── .gitignore
 ├── main.py                  # Entry point for a single instance
 ├── run_benchmark.py         # Benchmark experiment runner
+├── experiments/             # Component analysis and parameter sensitivity (Section 4.3)
 ├── src/
 │   ├── branch_and_price/    # Branch-and-Price algorithm
 │   ├── parser/              # Instance parsing
@@ -101,6 +121,7 @@ python run_benchmark.py --workers 1 --benchmarks Benchmark3_Medium --instances 3
 │   └── Muter/
 ├── MISC/                    # Benchmark index files and auxiliary inputs
 └── results/                 # Existing reports and generated results
+    └── ablation/            # Runs, traces and tables of Section 4.3
 ```
 
 ## Citation
