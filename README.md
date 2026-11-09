@@ -82,6 +82,16 @@ To run only some benchmarks or instances (for example, to re-run a single instan
 python run_benchmark.py --workers 1 --benchmarks Benchmark3_Medium --instances 30_48_0 --output rerun_30_48_0.csv
 ```
 
+### Results of the main experiments (Sections 4.2 and 4.4 of the paper)
+
+The reports of the main experiments are `results/Final Report Benchmark*.csv` (one row per instance with the results of the classic and the hybrid method). The tables, figure and statistical tests of the paper are reproduced from these files with
+
+```bash
+python experiments/analyze_main.py
+```
+
+which prints Tables 2, 3, 4, 6 and 10, the Wilcoxon and McNemar tests, the confidence interval of the time ratio and the numbers quoted in Sections 4.2 and 4.4, and writes them, together with Figure 2, to `results/main_analysis/`. The definitions of all measures are given at the top of the script.
+
 ### Component analysis and parameter sensitivity (Section 4.3 of the paper)
 
 `experiments/ablation.py` runs the hybrid method on the 1400 instances listed in `experiments/ablation_instances.csv` (all 1350 BAHCECI_ONCAN instances, all 30 small MUTER_ONCAN instances and 20 small HENN instances, five per capacity level, selected with `experiments/select_instances.py`):
@@ -110,7 +120,7 @@ which prints Tables 7, 8 and 9 and the numbers quoted in Sections 4.3 and 4.4, a
 ├── .gitignore
 ├── main.py                  # Entry point for a single instance
 ├── run_benchmark.py         # Benchmark experiment runner
-├── experiments/             # Component analysis and parameter sensitivity (Section 4.3)
+├── experiments/             # Analysis of the main experiments, component analysis and parameter sensitivity
 ├── src/
 │   ├── branch_and_price/    # Branch-and-Price algorithm
 │   ├── parser/              # Instance parsing
@@ -121,6 +131,7 @@ which prints Tables 7, 8 and 9 and the numbers quoted in Sections 4.3 and 4.4, a
 │   └── Muter/
 ├── MISC/                    # Benchmark index files and auxiliary inputs
 └── results/                 # Existing reports and generated results
+    ├── main_analysis/       # Tables, tests and Figure 2 of Sections 4.2 and 4.4
     └── ablation/            # Runs, traces and tables of Section 4.3
 ```
 

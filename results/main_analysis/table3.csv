@@ -1,0 +1,8 @@
+Benchmark,Size,Faster Instance (%),Lower Gap (%),Better LB (%),Newly Solved Instances
+BAHCECI_ONCAN,Small,83,0,0,0
+HENN,Small,19,72,72,14
+HENN,Medium,19,1,1,1
+HENN,Large,11,0,0,0
+MUTER_ONCAN,Small,20,3,80,1
+MUTER_ONCAN,Medium,5,0,73,0
+MUTER_ONCAN,Large,0,17,49,0

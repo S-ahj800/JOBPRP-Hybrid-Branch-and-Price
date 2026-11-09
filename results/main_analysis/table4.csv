@@ -1,0 +1,8 @@
+Benchmark,Size,Mean Successful Heuristic Calls,Heuristic Success Rate (%),Instances with more CG Iteration (%),Additional CG Iterations
+BAHCECI_ONCAN,Small,15,67,90,8
+HENN,Small,59,70,96,57
+HENN,Medium,92,93,100,91
+HENN,Large,139,98,100,139
+MUTER_ONCAN,Small,722,38,100,658
+MUTER_ONCAN,Medium,346,42,100,278
+MUTER_ONCAN,Large,507,70,100,361

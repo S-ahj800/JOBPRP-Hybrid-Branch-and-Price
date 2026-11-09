@@ -1,0 +1,95 @@
+instances: 1976
+
+Table 2
+Benchmark     | Size   | # Instance | #OPT (Classic) | #OPT (Hybrid) | Mean Time (Classic) | Mean Time (Hybrid) | Mean Gap (Classic) | Mean Gap (Hybrid)
+BAHCECI_ONCAN | Small  | 1350       | 1350           | 1350          | 2.26                | 1.67               | 0                  | 0                
+HENN          | Small  | 79         | 1              | 15            | 3663                | 3294               | 97                 | 57               
+HENN          | Medium | 160        | 0              | 1             | 4039                | 4035               | 100                | 99               
+HENN          | Large  | 157        | 0              | 0             | 5112                | 5475               | 100                | 100              
+MUTER_ONCAN   | Small  | 30         | 9              | 10            | 2783                | 2755               | 48                 | 46               
+MUTER_ONCAN   | Medium | 60         | 4              | 3             | 3489                | 3492               | 67                 | 68               
+MUTER_ONCAN   | Large  | 140        | 0              | 0             | 3610                | 3612               | 90                 | 85               
+
+Table 3
+Benchmark     | Size   | Faster Instance (%) | Lower Gap (%) | Better LB (%) | Newly Solved Instances
+BAHCECI_ONCAN | Small  | 83                  | 0             | 0             | 0                     
+HENN          | Small  | 19                  | 72            | 72            | 14                    
+HENN          | Medium | 19                  | 1             | 1             | 1                     
+HENN          | Large  | 11                  | 0             | 0             | 0                     
+MUTER_ONCAN   | Small  | 20                  | 3             | 80            | 1                     
+MUTER_ONCAN   | Medium | 5                   | 0             | 73            | 0                     
+MUTER_ONCAN   | Large  | 0                   | 17            | 49            | 0                     
+
+Table 4
+Benchmark     | Size   | Mean Successful Heuristic Calls | Heuristic Success Rate (%) | Instances with more CG Iteration (%) | Additional CG Iterations
+BAHCECI_ONCAN | Small  | 15                              | 67                         | 90                                   | 8                       
+HENN          | Small  | 59                              | 70                         | 96                                   | 57                      
+HENN          | Medium | 92                              | 93                         | 100                                  | 91                      
+HENN          | Large  | 139                             | 98                         | 100                                  | 139                     
+MUTER_ONCAN   | Small  | 722                             | 38                         | 100                                  | 658                     
+MUTER_ONCAN   | Medium | 346                             | 42                         | 100                                  | 278                     
+MUTER_ONCAN   | Large  | 507                             | 70                         | 100                                  | 361                     
+
+Table 6
+Benchmark     | Size   | Method  | Time Median (s) | Time Q1–Q3 | Time Min–Max | Time SD | Gap Median (%) | Gap Q1–Q3  
+BAHCECI_ONCAN | Small  | Classic | 1.20            | 0.75–2.08  | 0.21–144.56  | 5.81    | 0.0            | 0.0–0.0    
+BAHCECI_ONCAN | Small  | Hybrid  | 0.76            | 0.44–1.36  | 0.08–117.49  | 4.76    | 0.0            | 0.0–0.0    
+HENN          | Small  | Classic | 3664            | 3632–3704  | 2943–3800    | 95      | 100.0          | 100.0–100.0
+HENN          | Small  | Hybrid  | 3661            | 3615–3707  | 781–3860     | 858     | 63.5           | 41.2–87.6  
+HENN          | Medium | Classic | 3965            | 3751–4258  | 3601–4968    | 344     | 100.0          | 100.0–100.0
+HENN          | Medium | Hybrid  | 3918            | 3781–4224  | 3384–5038    | 354     | 100.0          | 100.0–100.0
+HENN          | Large  | Classic | 5199            | 4376–5705  | 3603–7092    | 849     | 100.0          | 100.0–100.0
+HENN          | Large  | Hybrid  | 5423            | 4651–6310  | 3602–8160    | 1028    | 100.0          | 100.0–100.0
+MUTER_ONCAN   | Small  | Classic | 3601            | 1549–3601  | 204–3602     | 1373    | 68.6           | 0.8–74.3   
+MUTER_ONCAN   | Small  | Hybrid  | 3601            | 1433–3602  | 108–3604     | 1395    | 66.7           | 0.5–74.3   
+MUTER_ONCAN   | Medium | Classic | 3603            | 3601–3605  | 943–3611     | 490     | 73.2           | 63.6–78.5  
+MUTER_ONCAN   | Medium | Hybrid  | 3603            | 3601–3605  | 629–3611     | 521     | 73.2           | 63.6–78.5  
+MUTER_ONCAN   | Large  | Classic | 3608            | 3603–3615  | 3600–3647    | 8       | 100.0          | 75.6–100.0 
+MUTER_ONCAN   | Large  | Hybrid  | 3610            | 3605–3617  | 3600–3649    | 8       | 100.0          | 67.5–100.0 
+
+Table 10
+Benchmark   | Orders | # Instance | #OPT (C / H) | Root solved (C / H) | Mean Gap % (C / H) | Mean CG Iter. (C / H)
+HENN        | 20     | 79         | 1 / 15       | 3 / 59              | 97 / 57            | 26 / 82              
+HENN        | 30     | 80         | 0 / 1        | 0 / 1               | 100 / 99           | 7 / 93               
+HENN        | 40     | 80         | 0 / 0        | 0 / 0               | 100 / 100          | 4 / 101              
+HENN        | 50     | 13         | 0 / 0        | 0 / 0               | 100 / 100          | 2 / 73               
+HENN        | 60     | 30         | 0 / 0        | 0 / 0               | 100 / 100          | 2 / 142              
+HENN        | 70     | 32         | 0 / 0        | 0 / 0               | 100 / 100          | 1 / 139              
+HENN        | 80     | 13         | 0 / 0        | 0 / 0               | 100 / 100          | 1 / 104              
+HENN        | 90     | 41         | 0 / 0        | 0 / 0               | 100 / 100          | 1 / 147              
+HENN        | 100    | 28         | 0 / 0        | 0 / 0               | 100 / 100          | 1 / 178              
+MUTER_ONCAN | 20     | 20         | 8 / 9        | 20 / 20             | 41 / 37            | 994 / 1369           
+MUTER_ONCAN | 30     | 20         | 3 / 2        | 20 / 20             | 57 / 61            | 695 / 912            
+MUTER_ONCAN | 40     | 20         | 1 / 1        | 20 / 20             | 65 / 65            | 443 / 648            
+MUTER_ONCAN | 50     | 20         | 0 / 0        | 20 / 20             | 69 / 69            | 381 / 609            
+MUTER_ONCAN | 60     | 20         | 0 / 0        | 12 / 20             | 80 / 69            | 340 / 605            
+MUTER_ONCAN | 70     | 20         | 0 / 0        | 5 / 11              | 91 / 81            | 325 / 613            
+MUTER_ONCAN | 80     | 20         | 0 / 0        | 0 / 6               | 100 / 89           | 323 / 671            
+MUTER_ONCAN | 90     | 20         | 0 / 0        | 0 / 0               | 100 / 100          | 331 / 727            
+MUTER_ONCAN | 100    | 20         | 0 / 0        | 0 / 0               | 100 / 100          | 326 / 746            
+
+Section 4.2.1 (BAHCECI_ONCAN)
+  mean time reduction: 26%
+  Wilcoxon signed-rank test (times): p = 1.9e-155
+  geometric mean of time ratio Hybrid/Classic: 0.62, 95% CI [0.60, 0.64]
+
+Section 4.2.2 (exact McNemar test on solved instances)
+  HENN Small: solved by Hybrid only 14, by Classic only 0, p = 0.00012
+  HENN Medium: solved by Hybrid only 1, by Classic only 0, p = 1
+  HENN Large: solved by Hybrid only 0, by Classic only 0, p = 1
+  MUTER_ONCAN Small: solved by Hybrid only 1, by Classic only 0, p = 1
+  MUTER_ONCAN Medium: solved by Hybrid only 0, by Classic only 1, p = 1
+  MUTER_ONCAN Large: solved by Hybrid only 0, by Classic only 0, p = 1
+
+Section 4.2.4 (Figure 2)
+  fastest method: Hybrid 60%, Classic 10%; solved by neither: 30%
+  within 1.5 x best time: Hybrid 68%, Classic 34%
+  solved (final height): Hybrid 70%, Classic 69%
+  HENN: gap below 100%: Hybrid 60, Classic 3 of 396; Hybrid curve below Classic: False
+  MUTER_ONCAN: gap below 100%: Hybrid 159, Classic 135 of 230; Hybrid curve below Classic: False
+
+Section 4.4 (BAHCECI_ONCAN by number of orders)
+  8 orders (900 instances): median time Classic 0.88 s, Hybrid 0.58 s; geometric mean ratio 0.62
+  12 orders (450 instances): median time Classic 2.32 s, Hybrid 1.47 s; geometric mean ratio 0.63
+
+Figure 2 written to results/main_analysis/figure2.jpg
